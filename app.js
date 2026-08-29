@@ -1,13 +1,12 @@
 /**
- * AMAWAL ULTIMATE - Supabase Live Sync (v3.1)
+ * AMAWAL ULTIMATE - Experimental Results Edition (v3.2)
  */
 
 // 1. Supabase Connection
 const supabaseUrl = 'https://savnjahwekgfnvcpofqe.supabase.co';
-const supabaseKey = 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy'; // مأخوذ من لوحة التحكم الخاصة بك
+const supabaseKey = 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy';
 const supabase = (typeof window.supabase !== 'undefined') ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
 
-// 2. Full Scientific Repository
 const searleTaxonomy = [
     { key: "assertive", label: "إخباريات", icon: "fa-info-circle" },
     { key: "directive", label: "توجيهيات", icon: "fa-hand-point-left" },
@@ -16,70 +15,82 @@ const searleTaxonomy = [
     { key: "declarative", label: "إعلانات", icon: "fa-bullhorn" }
 ];
 
+// 2. Experimental Results (The Field Corpus)
 let ultimateRepository = [
     {
-        id: "ULT-101", lemma: "Iswa / ⵉⵙⵡⴰ", category: "idioms",
-        meaning: "الاستيعاب الفيزيولوجي للمواد السائلة والعضوية.",
-        translation: "شربه / استولى عليه", manuscript: "turud unna wr irri lḥma iddud iswit",
-        analysis: "الارتقاء المعرفي: تحول من الاستهلاك العضوي إلى الهيمنة التداولية المطلقة.",
-        levels: { locution: "فعل تام يعبر عن الارتواء والاستهلاك المادي.", illocution: "فعل 'استحواذ رمزي' يعبر عن التمكن والمصادرة.", perlocution: "إثبات الهيمنة وتأطير سلطة المتحدث." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: تعبيري", force: "الاستحواذ والمصادرة", apparentKey: "assertive", implicitKey: "expressive" },
-        conditions: { felicity: "شرط السلطة والتمكن من الموارد", politeness: "تجاوز التلطيف لفرض واقع جديد", directionOfFit: "World-to-Word" },
-        context: { setting: "نزاعات على ملكية موارد مائية.", participants: "متحدث يثبت حقه تجاه منافس.", prosody: "نبرة حازمة وقاطعة." }
+        id: "EXP-001", lemma: "Awal n imzwura / ⴰⵡⴰⵍ ⵏ ⵉⵎⵣⵡⵓⵔⴰ", category: "proverbs",
+        meaning: "سلطة الموروث القولي في ضبط السلوك الجماعي.",
+        translation: "كلام الأولين مرجع الأرض وميزان الحق.", manuscript: "Awal n imzwura d lqist n tmurt",
+        analysis: "نتيجة تجريبية 1: القول يتحول من منطوق عابر إلى مؤسسة قانونية (Lqist).",
+        levels: { locution: "جملة خبرية تربط القول بالأرض.", illocution: "فعل 'تثبيت شرعية' للفعل الحالي.", perlocution: "إنهاء الجدل والخصومة بالعودة للأصل." },
+        taxonomy: { type: "الظاهر: إخباري | المضمر: إعلاني", force: "التثبيت والشرعية", apparentKey: "assertive", implicitKey: "declarative" },
+        conditions: { felicity: "شرط السلطة الجماعية", politeness: "الاحتماء بسلطة الأجداد", directionOfFit: "World-to-Word" },
+        context: { setting: "مجلس العرف (Agraw).", participants: "كبار القبيلة تجاه المتنازعين.", prosody: "نبرة وقورة وحازمة." }
     },
     {
-        id: "IZLI-101", lemma: "Izli n Usmun / إيزلي الرفيق", category: "izlan",
-        meaning: "تشبيه الرفيق بالكأس الذي يوضع ليبرد، فيأتي من يشربه دون استئذان.",
-        translation: "أعددت الصديق ككأس بارد، فغدر به غريب.", manuscript: "iyya usmun amm lkass nsirs t ad iṣmḍ\nturud unna wr irri lḥma iddud iswit",
-        analysis: "استقصاء ميداني: يظهر البيت قوة الفعل 'iswit' كفعل استحواذ اجتماعي مفاجئ.",
-        levels: { locution: "استعارة مادية تربط بين الرفيق والمتاع.", illocution: "فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل.", perlocution: "إشعار الآخر بفداحة فعله دون تصريح مباشر." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: توجيهي غير مباشر", force: "العتاب واللوم الضمني", apparentKey: "assertive", implicitKey: "directive" },
-        conditions: { felicity: "شرط الإخلاص والنية المبيتة", politeness: "حفظ ماء الوجه عبر الرمزية", directionOfFit: "Word-to-World" },
-        context: { setting: "جلسة سمر تفتقد لروح الثقة.", participants: "شاعر متضرر ومخاطب خائن.", prosody: "نبرة متهكمة ممزوجة بالمرارة." }
+        id: "EXP-002", lemma: "Tayri d lḥit / ⵜⴰⵢⵔⵉ ⴷ ⵍⵃⵉⵜ", category: "izlan",
+        meaning: "بيان عجز الإنسان أمام سطوة المشاعر (ريح الحب).",
+        translation: "الحب جدار يحيط بنا، فكيف نحسب له حساباً؟", manuscript: "Tayri d lḥit i t-id-igran, mamek ad as-ng lḥsab",
+        analysis: "نتيجة تجريبية 2: الانتقال من الوصف المادي (الجدار) إلى الحالة الوجدانية العميقة.",
+        levels: { locution: "استعارة تشبيهية للحب بالجدار المحيط.", illocution: "فعل 'بوح واعتراف بالعجز'.", perlocution: "إثارة التعاطف الوجداني مع السامع." },
+        taxonomy: { type: "الظاهر: إخباري | المضمر: تعبيري", force: "الشكوى والبوح", apparentKey: "assertive", implicitKey: "expressive" },
+        conditions: { felicity: "شرط الصدق الوجداني", politeness: "التعبير عن الذات بحرية", directionOfFit: "Word-to-World" },
+        context: { setting: "أمسيات إنشاد الشعر.", participants: "شاعر (محب) ومستمعون ذواقة.", prosody: "نبرة شجية وحزينة." }
     },
     {
-        id: "IZLI-102", lemma: "Aḍu n Tayri / ⴰⴹⵓ ⵏ ⵜⴰⵢⵔⵉ", category: "izlan",
-        meaning: "وصف قوة الحب وغموض مسالكه التي لا تخضع للحساب العقلي.",
-        translation: "ريح الحب جدار يحيط بنا، فكيف لنا أن نحسب لها حساباً؟", manuscript: "Aḍu n tayri d lḥit i t-id-igran\nmamek ad as-ng nttni lḥsab",
-        analysis: "استقصاء ميداني: يبرز البيت عجز الإنسان أمام سطوة العواطف وتحولها إلى قدر محتوم.",
-        levels: { locution: "جملة استعارية تشبه الحب بالريح وبالجدار.", illocution: "فعل 'اعتراف بالعجز' وبث الشكوى.", perlocution: "إثارة التعاطف وتقاسم التجربة الإنسانية." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: تعبيري", force: "الشكوى والبوح الوجداني", apparentKey: "assertive", implicitKey: "expressive" },
-        conditions: { felicity: "شرط الإخلاص والصدق الوجداني", politeness: "التعبير عن الذات بحرية.", directionOfFit: "Word-to-World" },
-        context: { setting: "أمسية شعرية.", participants: "شاعر (محب) ومستمعون.", prosody: "نبرة شجية وحزينة." }
+        id: "EXP-003", lemma: "Icc-it udrar / ⵉⵛⵛⵉⵜ ⵓⴷⵔⴰⵔ", category: "idioms",
+        meaning: "تعبير يستعمل لإعلان ضياع الشيء أو موته المعنوي.",
+        translation: "أكله الجبل (ضاع للأبد).", manuscript: "Icc-it udrar, ur d-yffiy",
+        analysis: "نتيجة تجريبية 3: استعارة 'الجبل' كمكان للامتصاص والضياع النهائي (Symbolic Loss).",
+        levels: { locution: "فعل ماضٍ (أكل) يسند للجبل.", illocution: "فعل 'إعلان اليأس' من استرجاع الشيء.", perlocution: "قطع الطريق على أي محاولة للبحث أو الأمل." },
+        taxonomy: { type: "الظاهر: إخباري | المضمر: إعلاني", force: "إعلان الضياع", apparentKey: "assertive", implicitKey: "declarative" },
+        conditions: { felicity: "شرط وقوع الواقعة فعلاً", politeness: "التلطيف عبر الاستعارة المكانية", directionOfFit: "Word-to-World" },
+        context: { setting: "فقدان شخص أو ضياع حق مادي.", participants: "ناقل الخبر والمستقبل الحزين.", prosody: "نبرة قاطعة ومحزنة." }
     },
     {
-        id: "PROV-101", lemma: "Ur ittili walu, bla walu", category: "proverbs",
-        meaning: "لا يكون شيء من لا شيء. (النتيجة لا تقع إلا بوجود سبب).",
-        translation: "لا دخان بلا نار.", manuscript: "Ur ittili walu, bla walu",
-        analysis: "الارتقاء المعرفي: فرض الاعتراف بالمسؤولية في مجالس العرف.",
-        levels: { locution: "جملة خبرية نفيية تقرر حقيقة فلسفية.", illocution: "فعل 'تنبيه وتحذير' وإلزام بالحجة.", perlocution: "إفحام المخاطب ودفعه للاعتراف بالمسببات." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: توجيهي", force: "الإلزام والحجاج", apparentKey: "assertive", implicitKey: "directive" },
-        conditions: { felicity: "شرط الإنجاز والمقام الاجتماعي (Agraw)", politeness: "الصرامة العرفية المقبولة.", directionOfFit: "Word-to-World" },
-        context: { setting: "مجالس الصلح وفض النزاعات.", participants: "كبار القبيلة تجاه أطراف النزاع.", prosody: "نبرة صارمة ووقورة." }
-    },
-    {
-        id: "TALE-001", lemma: "Tamacahutt n Wuccen / حكاية الذئب", category: "tales",
-        meaning: "قصة رمزية عن الصراع بين المكر والذكاء.",
-        translation: "حكاية الذئب والذئبة في المتخيل الشعبي.", manuscript: "illa wmšan d tmšant d lxir d memmi-s...",
-        analysis: "تحليل سردي: بنية الحكاية تعتمد على التكرار والنمذجة الأخلاقية.",
-        levels: { locution: "بنية سردية تعتمد على الجمل التقريرية.", illocution: "فعل 'وعظي' وتأطير قيمي.", perlocution: "ترسيخ الحكمة الجماعية وتنمية ملكة النقد." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: إعلاني", force: "التوجيه الأخلاقي", apparentKey: "assertive", implicitKey: "declarative" },
-        conditions: { felicity: "شرط السلطة الثقافية للراوي", politeness: "التلطيف عبر الإسقاط على الحيوان.", directionOfFit: "World-to-Word" },
-        context: { setting: "جلسة ليلية عائلية لتربية الأطفال.", participants: "الجدة/الأم والأبناء.", prosody: "نبرة تعليمية مشوقة." }
-    },
-    {
-        id: "RID-001", lemma: "Timseɛraq / الألغاز", category: "riddles",
-        meaning: "تمرين ذهني يعتمد على الوصف المجازي للأشياء.",
-        translation: "ما هو الشيء الذي يأكل ولا يشرب؟", manuscript: "D acu nni? Icca, ur iswi...",
-        analysis: "تداولية اللغز: خلق فجوة معرفية تتطلب استحضار السياق الثقافي.",
-        levels: { locution: "صيغة استفهامية تعتمد على التناقض.", illocution: "فعل 'تحدي معرفي' واختبار للانتماء.", perlocution: "إثارة الدهشة وتنشيط الذاكرة الجماعية." },
-        taxonomy: { type: "توجيهي استفهامي", force: "التحدي والاختبار", apparentKey: "directive", implicitKey: "" },
-        conditions: { felicity: "شرط المساواة في موقف اللعب.", politeness: "التنافس الودي.", directionOfFit: "Word-to-World" },
-        context: { setting: "جلسات التسلية وتنافس الذكاء.", participants: "المتحدي ومجموعة المتلقين.", prosody: "نبرة محفزة ومرحة." }
+        id: "EXP-004", lemma: "D acu nni? / ⴷ ⴰⵛⵓ ⵏⵏⵉ?", category: "riddles",
+        meaning: "اختبار الذكاء وسرعة البديهة عبر وصف لغزي.",
+        translation: "ما هو الشيء الذي يمشي بلا أرجل؟", manuscript: "D acu nni? Itteddu ur lân iḍarrn...",
+        analysis: "نتيجة تجريبية 4: اللغز كفعل كلامي 'توجيهي' يهدف لتحريك الذهن (Cognitive Challenge).",
+        levels: { locution: "صيغة سؤال استفهامية متناقضة.", illocution: "فعل 'تحدي واختبار' للانتماء الثقافي.", perlocution: "إثارة الدهشة وتنشيط الذاكرة الجماعية." },
+        taxonomy: { type: "توجيهي استفهامي", force: "التحدي الذهني", apparentKey: "directive", implicitKey: "" },
+        conditions: { felicity: "شرط وجود حل متفق عليه", politeness: "التنافس الودي", directionOfFit: "Word-to-World" },
+        context: { setting: "جلسات التسلية الليلية.", participants: "مبادر باللغز ومجموعة شباب.", prosody: "نبرة محفزة ومرحة." }
     }
 ];
 
-// 2. Navigation & Rendering Logic
+// 3. Logic & Helpers
+function executeRenderSingleDetail(item, pushState = true) {
+    const nexus = document.getElementById("results-nexus");
+    if (!nexus) return;
+    nexus.innerHTML = "";
+    const article = document.createElement("article");
+    article.className = "lexical-artifact ultimate-reveal";
+
+    let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.2rem 0;">';
+    searleTaxonomy.forEach(cat => {
+        let active = (cat.key === item.taxonomy.apparentKey) ? 'active-apparent' : (cat.key === item.taxonomy.implicitKey ? 'active-implicit' : '');
+        let icon = (cat.key === item.taxonomy.apparentKey) ? 'fa-check-circle' : (cat.key === item.taxonomy.implicitKey ? 'fa-check-double' : cat.icon);
+        tagsHtml += `<span class="taxonomy-tag ${active}" style="font-size:0.75rem;"><i class="fas ${icon}"></i> ${cat.label}</span>`;
+    });
+    tagsHtml += '</div>';
+
+    article.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.lemma}</h2><span style="font-size:0.7rem; color:var(--text-muted); opacity:0.6;">${item.id}</span></div>
+        <div class="matrix-node" style="margin-bottom:2rem;"><h4 style="font-size:0.85rem; color:var(--azure); margin-bottom:1rem;"><i class="fas fa-scroll"></i> الدلالة المعجمية</h4><p style="font-size:1.5rem; color:var(--text-main); font-weight:800;">${item.meaning}</p></div>
+        <div class="corpus-vault-imperial" style="background:#5d4037; border-radius:20px; padding:2rem 1.5rem; margin-bottom:2.5rem;"><div style="text-align:center; margin-bottom:1.5rem;"><span style="color:#d4a373; font-size:1.6rem; font-style:italic; white-space:pre-line;">${item.manuscript}</span></div><div style="border-top:1px solid rgba(212, 163, 115, 0.2); padding-top:1rem;"><h4 style="color:#d4a373; font-size:0.9rem;"><i class="fas fa-microscope"></i> استقصاء ميداني:</h4><p style="color:#bcaaa4; font-size:0.95rem;">${item.analysis}</p></div></div>
+        <div class="pragmatic-master-grid">
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف</h4>${tagsHtml}<p style="font-size:0.9rem;"><strong>النوع:</strong> ${item.taxonomy.type} <br> <strong>القوة:</strong> ${item.taxonomy.force}</p></div>
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-check-double"></i> 3. المحددات والشروط</h4><p style="font-size:0.9rem;"><strong>النجاح:</strong> ${item.conditions.felicity} <br> <strong>التأدب:</strong> ${item.conditions.politeness} <br> <strong>المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></p></div>
+            <div class="pragmatic-section ethnopragmatic-vault" style="background:rgba(162,210,255,0.05); padding:1rem; border-radius:15px; border:1px dashed var(--azure);"><h4><i class="fas fa-map-marked-alt"></i> 4. المقام الثقافي المحلي</h4><p style="font-size:0.9rem;"><strong>المناسبة:</strong> ${item.context.setting} <br> <strong>الأطراف:</strong> ${item.context.participants} <br> <strong>التنغيم:</strong> ${item.context.prosody}</p></div>
+        </div>
+    `;
+    nexus.appendChild(article);
+    if (pushState) history.pushState({ page: 'detail', id: item.id }, '', '#detail-' + item.id);
+    updateNavbarVisibility();
+}
+
 function executeSwitchPane(id, btn, pushState = true) {
     const target = document.getElementById(id);
     if (!target) return;
@@ -112,38 +123,6 @@ function executeSetSearchCategory(cat, pushState = true) {
     if (pushState) history.pushState({ page: 'list', cat: cat }, '', '#list-' + cat);
 }
 
-function executeRenderSingleDetail(item, pushState = true) {
-    const nexus = document.getElementById("results-nexus");
-    if (!nexus) return;
-    nexus.innerHTML = "";
-    const article = document.createElement("article");
-    article.className = "lexical-artifact ultimate-reveal";
-
-    let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin:1.2rem 0;">';
-    searleTaxonomy.forEach(cat => {
-        let active = (cat.key === item.taxonomy.apparentKey) ? 'active-apparent' : (cat.key === item.taxonomy.implicitKey ? 'active-implicit' : '');
-        let icon = (cat.key === item.taxonomy.apparentKey) ? 'fa-check-circle' : (cat.key === item.taxonomy.implicitKey ? 'fa-check-double' : cat.icon);
-        tagsHtml += `<span class="taxonomy-tag ${active}" style="font-size:0.75rem;"><i class="fas ${icon}"></i> ${cat.label}</span>`;
-    });
-    tagsHtml += '</div>';
-
-    article.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.lemma}</h2></div>
-        <div class="matrix-node" style="margin-bottom:2rem;"><h4 style="font-size:0.85rem; color:var(--azure); margin-bottom:1rem;"><i class="fas fa-scroll"></i> الدلالة المعجمية</h4><p style="font-size:1.5rem; color:var(--text-main); font-weight:800;">${item.meaning}</p></div>
-        <div class="corpus-vault-imperial" style="background:#5d4037; border-radius:20px; padding:2rem 1.5rem; margin-bottom:2.5rem;"><div style="text-align:center; margin-bottom:1.5rem;"><span style="color:#d4a373; font-size:1.6rem; font-style:italic; white-space:pre-line;">${item.manuscript}</span></div><div style="border-top:1px solid rgba(212, 163, 115, 0.2); padding-top:1rem;"><h4 style="color:#d4a373; font-size:0.9rem;"><i class="fas fa-microscope"></i> استقصاء ميداني:</h4><p style="color:#bcaaa4; font-size:0.95rem;">${item.analysis}</p></div></div>
-        <div class="pragmatic-master-grid">
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-bullseye"></i> 2. المقاصد</h4>${tagsHtml}<p style="font-size:0.9rem;"><strong>النوع:</strong> ${item.taxonomy.type} <br> <strong>القوة:</strong> ${item.taxonomy.force}</p></div>
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-check-double"></i> 3. المحددات</h4><p style="font-size:0.9rem;"><strong>النجاح:</strong> ${item.conditions.felicity} <br> <strong>التأدب:</strong> ${item.conditions.politeness} <br> <strong>المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></p></div>
-            <div class="pragmatic-section ethnopragmatic-vault" style="background:rgba(162,210,255,0.05); padding:1rem; border-radius:15px; border:1px dashed var(--azure);"><h4><i class="fas fa-map-marked-alt"></i> 4. المقام الثقافي المحلي</h4><p style="font-size:0.9rem;"><strong>المناسبة:</strong> ${item.context.setting} <br> <strong>الأطراف:</strong> ${item.context.participants} <br> <strong>التنغيم:</strong> ${item.context.prosody}</p></div>
-        </div>
-    `;
-    nexus.appendChild(article);
-    if (pushState) history.pushState({ page: 'detail', id: item.id }, '', '#detail-' + item.id);
-    updateNavbarVisibility();
-}
-
-// 3. Global Helpers
 function updateNavbarVisibility() {
     const b = document.getElementById('back-btn'), m = document.getElementById('menu-btn'), g = document.getElementById('category-grid');
     const isDetail = location.hash.startsWith('#detail-');
@@ -167,6 +146,20 @@ window.onpopstate = function(e) {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (supabase) {
+        supabase.from('speech_acts').select('*').then(({data, error}) => {
+            if (!error && data && data.length > 0) {
+                ultimateRepository = data.map(item => ({
+                    id: item.id, lemma: item.lemma, meaning: item.meaning, translation: item.translation,
+                    manuscript: item.manuscript, analysis: item.analysis, category: item.category,
+                    levels: { locution: item.locution, illocution: item.illocution, perlocution: item.perlocution },
+                    taxonomy: { type: item.taxonomy_type, force: item.taxonomy_force, apparentKey: item.apparent_key, implicitKey: item.implicit_key },
+                    conditions: { felicity: item.felicity, politeness: item.politeness, directionOfFit: item.direction_of_fit },
+                    context: { setting: item.context_setting, participants: item.context_participants, prosody: item.context_prosody }
+                }));
+            }
+        });
+    }
     const savedTheme = localStorage.getItem('amawar-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     history.replaceState({ page: 'pane-lexicon' }, '', '#home');
