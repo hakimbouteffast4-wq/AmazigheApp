@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+    <title>أفعال الكلام | أيت يوسي</title>
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="entrance-anim">
+    <div class="orb orb-1"></div>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>أفعال الكلام</h2>
+            <span>دراسة تداولية</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active" onclick="switchPane('pane-lexicon', this); toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
+            <button onclick="toggleSidebarSubnav()"><i class="fas fa-layer-group"></i> المتن المجمع <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-right: auto;"></i></button>
+            <div id="sidebar-subnav" class="sidebar-subnav" style="display:none;">
+                <a href="#" onclick="setSearchCategory('tales'); toggleSidebar()">الحكايات</a>
+                <a href="#" onclick="setSearchCategory('izlan'); toggleSidebar()">إيزلان</a>
+                <a href="#" onclick="setSearchCategory('proverbs'); toggleSidebar()">أمثال شعبية</a>
+                <a href="#" onclick="setSearchCategory('riddles'); toggleSidebar()">ألغاز</a>
+                <a href="#" onclick="setSearchCategory('idioms'); toggleSidebar()">تعابير مسكوكة</a>
+            </div>
+            <a href="#" onclick="switchPane('about-pane', this); toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
+            <a href="#" onclick="switchPane('contact-pane', this); toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
+
+            <div class="admin-sidebar-section">
+                <button onclick="switchPane('admin-pane', this); toggleSidebar()" class="admin-btn-nav">
+                    <i class="fas fa-user-shield"></i> تحكم المشرف
+                </button>
+            </div>
+        </nav>
+    </aside>
+
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div style="display: flex; gap: 10px; align-items: center; width: 120px;">
+                <button id="back-btn" class="trigger-btn" onclick="navigateBack()" style="display:none;"><i class="fas fa-arrow-right"></i></button>
+                <button id="menu-btn" class="trigger-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="brand-pinnacle" onclick="switchPane('pane-lexicon')">
+                <h1>أفعال الكلام</h1>
+                <span>في التراث الشفهي لأيت يوسي</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; justify-content: flex-end; width: 120px; margin-right: auto;">
+                <button id="theme-toggle" class="trigger-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-master-wrapper" style="padding: 2rem; position: relative; z-index: 1;">
+        <div id="pane-lexicon" class="pane-container active">
+            <div id="category-grid" class="speech-act-grid">
+                <div class="act-category-card" onclick="setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>التعابير المسكوكة</h3></div>
+            </div>
+            <div id="results-nexus"></div>
+        </div>
+
+        <div id="about-pane" class="pane-container" style="display: none;">
+            <div class="contact-card ultimate-reveal">
+                <h2 class="contact-title">حول الدراسة</h2>
+                <p>أرشفة رقمية وتحليل لساني تداولي للتراث الشفهي لقبيلة أيت يوسي.</p>
+            </div>
+        </div>
+
+        <div id="contact-pane" class="pane-container" style="display: none;">
+            <div class="contact-card ultimate-reveal">
+                <h2 class="contact-title">اتصل بنا</h2>
+                <p>الباحث الرئيسي: <span style="color: var(--gold); font-weight: bold;">hakimed.b@gmail.com</span></p>
+            </div>
+        </div>
+
+        <div id="admin-pane" class="pane-container" style="display: none;">
+            <div class="contact-card ultimate-reveal" style="border-top: 4px solid var(--azure);">
+                <i class="fas fa-user-shield fa-4x" style="margin-bottom: 2rem; color: var(--azure); display: block; margin-left: auto; margin-right: auto;"></i>
+                <h2 class="contact-title">لوحة التحكم</h2>
+                <p>إدارة المتن الميداني وتصدير البيانات.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js?v=1.2"></script>
+</body>
+</html>
