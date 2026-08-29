@@ -3,51 +3,164 @@
  * Final Master Script - High Performance & Full Theme Support
  */
 
+const searleTaxonomy = [
+    { key: "assertive", label: "إخباريات", icon: "fa-info-circle" },
+    { key: "directive", label: "توجيهيات", icon: "fa-hand-point-left" },
+    { key: "commissive", label: "تعهديات", icon: "fa-file-contract" },
+    { key: "expressive", label: "تعبيريات", icon: "fa-heart" },
+    { key: "declarative", label: "إعلانات", icon: "fa-bullhorn" }
+];
+
 const ultimateRepository = [
     {
         id: "ULT-101",
         lemma: "Iswa / ⵉⵙⵡⴰ",
         meaning: "الاستيعاب الفيزيولوجي للمواد السائلة والعضوية.",
-        logic: "تحليل تداولي:\n1. الفعل اللغوي: فعل تام يعبر عن الارتواء.\n2. القوة الإنجازية: فعل 'استحواذ رمزي' يعبر عن التمكن والمصادرة.\n3. الأثر التأثيري: إثبات الهيمنة وتأطير سلطة المتحدث.",
+        translation: "شربه / استولى عليه",
         manuscript: "turud unna wr irri lḥma iddud iswit",
         analysis: "الارتقاء المعرفي: تحول من الاستهلاك العضوي إلى الهيمنة التداولية المطلقة.",
-        category: "idioms"
+        category: "idioms",
+        levels: {
+            locution: "فعل تام يعبر عن الارتواء والاستهلاك المادي.",
+            illocution: "فعل 'استحواذ رمزي' يعبر عن التمكن والمصادرة والسيطرة على الموقف.",
+            perlocution: "إثبات الهيمنة وتأطير سلطة المتحدث وإخضاع السياق لتقديره."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: تعبيري (Expressive)",
+            force: "الاستحواذ والمصادرة",
+            apparentKey: "assertive",
+            implicitKey: "expressive"
+        },
+        conditions: {
+            felicity: "شرط السلطة والتمكن من الموارد",
+            politeness: "تجاوز التلطيف لفرض واقع جديد",
+            directionOfFit: "World-to-Word (تغيير العالم ليطابق الكلمة/الرغبة)"
+        },
+        context: {
+            setting: "تعاملات تجارية أو نزاعات على ملكية موارد مائية/عقارية.",
+            participants: "متحدث يثبت حقه تجاه منافس أو مخاطب متردد.",
+            prosody: "نبرة حازمة، قاطعة، تخلو من التردد (Assertive Tone)."
+        }
     },
     {
         id: "IZLI-101",
         lemma: "Izli n Usmun / إيزلي الرفيق",
         meaning: "تشبيه الرفيق بالكأس الذي يوضع ليبرد، فيأتي من يشربه دون استئذان.",
-        logic: "تحليل المستويات:\n1. الفعل اللغوي: استعارة مادية ملموسة.\n2. القوة الإنجازية: فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل.\n3. الأثر التأثيري: إشعار الآخر بفداحة فعله دون تصريح مباشر.",
+        translation: "أعددت الصديق ككأس بارد، فجاء من ارتشفه (غدر به).",
         manuscript: "iyya usmun amm lkass nsirs t ad iṣmḍ\nturud unna wr irri lḥma iddud iswit",
         analysis: "استقصاء ميداني: يظهر البيت قوة الفعل 'iswit' (شربه) كفعل استحواذ اجتماعي مفاجئ.",
-        category: "izlan"
+        category: "izlan",
+        levels: {
+            locution: "استعارة مادية ملموسة تربط بين الرفيق والمتاع (الكأس).",
+            illocution: "فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل في الأمانة.",
+            perlocution: "إشعار الآخر بفداحة فعله (الغدر) دون تصريح مباشر يكسر قواعد التأدب."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: توجيهي غير مباشر (Indirect Directive)",
+            force: "العتاب واللوم الضمني",
+            apparentKey: "assertive",
+            implicitKey: "directive"
+        },
+        conditions: {
+            felicity: "شرط الإخلاص والنية المبيتة",
+            politeness: "حفظ ماء الوجه (Face-saving) عبر الرمزية",
+            directionOfFit: "Word-to-World (مطابقة الكلمة للعالم/الواقع الموصوف)"
+        },
+        context: {
+            setting: "أمسية شعرية أو جلسة سمر تفتقد لروح الثقة القديمة.",
+            participants: "شاعر (متضرر) ومخاطب (صديق خائن) بحضور الجماعة.",
+            prosody: "نبرة متهكمة (Sarcastic) ممزوجة بمرارة الخذلان."
+        }
     },
     {
         id: "TALE-001",
         lemma: "Tamacahutt n Wuccen / حكاية الذئب",
         meaning: "قصة رمزية عن الصراع بين المكر والذكاء في المتخيل الشعبي.",
-        logic: "البنية التداولية:\n1. الفعل السردي: جمل تقريرية متسلسلة.\n2. القوة الإنجازية: فعل 'وعظي' وتأطير للقيم القبلية.\n3. الأثر التأثيري: ترسيخ الحكمة الجماعية عبر الاستعارة الحيوانية.",
+        translation: "كان هناك ذئب وذئبة وولديهما...",
         manuscript: "illa wmšan d tmšant d lxir d memmi-s...",
         analysis: "تحليل سردي: بنية الحكاية تعتمد على التكرار والنمذجة الأخلاقية للشخصيات.",
-        category: "tales"
+        category: "tales",
+        levels: {
+            locution: "بنية سردية تعتمد على الجمل التقريرية المتسلسلة والتشخيص.",
+            illocution: "فعل 'وعظي' وتأطير قيمي يهدف لترسيخ معايير السلوك.",
+            perlocution: "ترسيخ الحكمة الجماعية وتنمية ملكة النقد عبر الاستعارة الحيوانية."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: إعلاني/تأطيري (Declarative)",
+            force: "التوجيه الأخلاقي",
+            apparentKey: "assertive",
+            implicitKey: "declarative"
+        },
+        conditions: {
+            felicity: "شرط التمهيد (الاستماع للراوي) والسلطة الثقافية",
+            politeness: "التلطيف العرفي عبر الإسقاط على الحيوان",
+            directionOfFit: "World-to-Word (محاولة جعل سلوك السامع يطابق القيمة)"
+        },
+        context: {
+            setting: "جلسة ليلية عائلية (Tinfusin) لتربية الأطفال ونقل القيم.",
+            participants: "الجدة/الأم (المتكلمة) والأبناء (المستمعون).",
+            prosody: "نبرة تعليمية، هادئة، مشوقة وتعتمد على التلوين الصوتي."
+        }
     },
     {
         id: "RID-001",
         lemma: "Timseɛraq / الألغاز",
         meaning: "تمرين ذهني يعتمد على الوصف المجازي للأشياء اليومية لاختبار الذكاء.",
-        logic: "ميكانزمات الفعل الكلامي:\n1. الفعل اللغوي: سؤال استفهامي أو وصف مبهج.\n2. القوة الإنجازية: فعل 'تحدي معرفي' واختبار للانتماء الثقافي.\n3. الأثر التأثيري: إثارة الدهشة وتنشيط الذاكرة الجماعية.",
+        translation: "ما هو الشيء الذي يأكل ولا يشرب؟",
         manuscript: "D acu nni? Icca, ur iswi...",
         analysis: "تداولية اللغز: خلق فجوة معرفية تتطلب استحضار السياق الثقافي لحلها.",
-        category: "riddles"
+        category: "riddles",
+        levels: {
+            locution: "صيغة استفهامية أو وصف لغزي يعتمد على التناقض الظاهري.",
+            illocution: "فعل 'تحدي معرفي' واختبار للانتماء للرصيد الثقافي المشترك.",
+            perlocution: "إثارة الدهشة، تنشيط الذاكرة الجماعية، وتحقيق المتعة الذهنية."
+        },
+        taxonomy: {
+            type: "توجيهي استفهامي (Directive)",
+            force: "التحدي والاختبار",
+            apparentKey: "directive",
+            implicitKey: ""
+        },
+        conditions: {
+            felicity: "شرط المساواة في الموقف التواصلي (اللعب)",
+            politeness: "التنافس الودي",
+            directionOfFit: "Word-to-World (البحث عن مطابقة الكلمة للعالم الحقيقي)"
+        },
+        context: {
+            setting: "جلسات التسلية الجماعية وتنافس الذكاء بين الشباب.",
+            participants: "مبادر باللغز (المتحدي) ومجموعة من المتلقين.",
+            prosody: "نبرة محفزة، مرحة، وتحدي ودي."
+        }
     },
     {
         id: "PROV-101",
         lemma: "Ur ittili walu, bla walu",
         meaning: "لا يكون شيء من لا شيء. (تقرير حقيقة منطقية: النتيجة لا تقع إلا بوجود سبب).",
-        logic: "تحليل نظرية أفعال الكلام (Austin & Searle):\n1. الفعل اللغوي (Locutionary): جملة خبرية نفيية تقرر حقيقة سببية وفلسفية.\n2. القوة الإنجازية (Illocutionary): فعل 'تنبيه وتحذير' (Warning) وإلزام بالحجة في مجالس الصلح (Agraw) لفرض الاعتراف بالمسؤولية.\n3. الأثر التأثيري (Perlocutionary): إفحام المخاطب، إنهاء الجدال العقيم، ودفعه للاعتراف بالمسببات الحقيقية للنزاع.",
+        translation: "لا دخان بلا نار / لا شيء يحدث عبثاً.",
         manuscript: "Ur ittili walu, bla walu",
         analysis: "نوع الفعل الظاهر: إخباري تقريري (Assertive). نوع الفعل المضمر (Awal yffrn): توجيهي تحذيري وإفحامي.",
-        category: "proverbs"
+        category: "proverbs",
+        levels: {
+            locution: "جملة خبرية نفيية تقرر حقيقة سببية وفلسفية كونية.",
+            illocution: "فعل 'تنبيه وتحذير' وإلزام بالحجة في مجالس العرف لفرض المسؤولية.",
+            perlocution: "إفحام المخاطب، إنهاء الجدال العقيم، ودفعه للاعتراف بالمسببات."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: توجيهي (Directive)",
+            force: "الإلزام والحجاج",
+            apparentKey: "assertive",
+            implicitKey: "directive"
+        },
+        conditions: {
+            felicity: "شرط الإنجاز والمقام الاجتماعي (مجلس Agraw)",
+            politeness: "الصرامة العرفية المقبولة اجتماعياً",
+            directionOfFit: "Word-to-World (مطابقة الكلام للعالم/الواقع المنطقي)"
+        },
+        context: {
+            setting: "مجالس الصلح (Agraw) أو فض النزاعات القبلية.",
+            participants: "كبار القبيلة أو المحكمين في مواجهة أطراف النزاع.",
+            prosody: "نبرة صارمة، وقورة، ومقنعة (Authoritative)."
+        }
     }
 ];
 
@@ -146,28 +259,35 @@ function executeRenderSingleDetail(item, pushState = true) {
     const article = document.createElement("article");
     article.className = "lexical-artifact ultimate-reveal";
 
-    // 1. Identity Section (The Header)
-    let identityHtml = `
-        <div class="identity-section" style="margin-bottom: 2.5rem; border-bottom: 2px solid var(--gold); padding-bottom: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h2 style="font-size: 2.2rem; color: var(--gold); font-weight: 950; margin:0;">${item.lemma}</h2>
-                <span style="background: var(--azure); color: var(--brand-bg); padding: 0.2rem 0.8rem; border-radius: 12px; font-weight: 900; font-size: 0.75rem;">${item.id}</span>
+    // Header: Lexical Meaning
+    let headerHtml = `
+        <div class="matrix-node" style="margin-bottom: 2rem;">
+            <h4 style="font-size: 0.85rem; color: var(--azure); letter-spacing: 1px; margin-bottom: 1rem;">
+                <i class="fas fa-scroll"></i> الدلالة المعجمية
+            </h4>
+            <p style="font-size: 1.5rem; color: var(--text-main); font-weight: 800; line-height: 1.4;">${item.meaning}</p>
+        </div>
+    `;
+
+    // The Stylized Brown Box (Exactly as the screenshot)
+    let manuscriptBoxHtml = `
+        <div class="corpus-vault-imperial" style="background: #5d4037; border-radius: 20px; padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; border-right: none; position: relative; overflow: hidden;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="manuscript-prime" style="color: #d4a373; font-size: 1.6rem; font-style: italic; line-height: 1.8; white-space: pre-line;">${item.manuscript}</span>
             </div>
-            <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 20px; border-right: 4px solid var(--azure);">
-                <h4 style="font-size: 0.85rem; color: var(--azure); margin-bottom: 0.8rem; letter-spacing: 2px;"><i class="fas fa-language"></i> الترجمة والدلالة المعجمية</h4>
-                <p style="font-size: 1.3rem; color: var(--text-main); font-weight: 800; line-height: 1.4;">${item.translation}</p>
-                <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;">${item.meaning}</p>
+            <div style="border-top: 1px solid rgba(212, 163, 115, 0.2); padding-top: 1.5rem; margin-top: 1.5rem;">
+                <h4 style="color: #d4a373; font-size: 0.9rem; margin-bottom: 0.8rem;">
+                    <i class="fas fa-microscope" style="transform: scaleX(-1);"></i> استقصاء ميداني:
+                </h4>
+                <p style="color: #bcaaa4; font-size: 0.95rem; line-height: 1.6; font-weight: 500;">${item.analysis}</p>
             </div>
-            <p style="font-size: 1rem; color: var(--gold); margin-top: 1rem; font-style: italic; opacity: 0.8;">
-                <i class="fas fa-quote-right" style="font-size: 0.7rem; margin-left: 5px;"></i> التفريغ: ${item.manuscript}
-            </p>
         </div>
     `;
 
     let pragmaticContent = '';
     if (item.levels) {
-        // Generate Taxonomy Tags
-        let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin: 1rem 0;">';
+        // Taxonomy Tags (Searle's)
+        let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin: 1.2rem 0;">';
         searleTaxonomy.forEach(cat => {
             let activeClass = '';
             let checkIcon = '';
@@ -178,69 +298,73 @@ function executeRenderSingleDetail(item, pushState = true) {
                 activeClass = 'active-implicit';
                 checkIcon = '<i class="fas fa-check-double"></i>';
             }
-            tagsHtml += `<span class="taxonomy-tag ${activeClass}" style="font-size:0.75rem; padding: 0.3rem 0.8rem;">${checkIcon} ${cat.label}</span>`;
+            tagsHtml += `<span class="taxonomy-tag ${activeClass}" style="font-size:0.8rem;">${checkIcon} ${cat.label}</span>`;
         });
         tagsHtml += '</div>';
 
         pragmaticContent = `
             <div class="pragmatic-master-grid">
                 <!-- Section 1 -->
-                <div class="pragmatic-section" style="margin-bottom: 2rem;">
-                    <h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4>
-                    <ul style="list-style:none; padding-right: 5px;">
-                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل اللفظي:</strong> <span style="color:var(--text-main);">${item.levels.locution}</span></li>
-                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل الإنجازي:</strong> <span style="color:var(--text-main);">${item.levels.illocution}</span></li>
-                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل التأثيري:</strong> <span style="color:var(--text-main);">${item.levels.perlocution}</span></li>
+                <div class="pragmatic-section" style="margin-bottom: 2.5rem;">
+                    <h4 style="color: var(--azure); font-weight: 900; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                        <i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب
+                    </h4>
+                    <ul style="list-style:none; padding-right: 0;">
+                        <li style="margin-bottom:1rem;"><strong style="color:var(--gold); margin-left:8px;">الفعل اللفظي:</strong> <span style="color:var(--text-muted);">${item.levels.locution}</span></li>
+                        <li style="margin-bottom:1rem;"><strong style="color:var(--gold); margin-left:8px;">الفعل الإنجازي:</strong> <span style="color:var(--text-muted);">${item.levels.illocution}</span></li>
+                        <li><strong style="color:var(--gold); margin-left:8px;">الفعل التأثيري:</strong> <span style="color:var(--text-muted);">${item.levels.perlocution}</span></li>
                     </ul>
                 </div>
 
                 <!-- Section 2 -->
-                <div class="pragmatic-section" style="margin-bottom: 2rem;">
-                    <h4><i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف الإنجازي</h4>
+                <div class="pragmatic-section" style="margin-bottom: 2.5rem;">
+                    <h4 style="color: var(--azure); font-weight: 900; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                        <i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف الإنجازي
+                    </h4>
                     ${tagsHtml}
-                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px; font-size: 0.9rem;">
-                        <p style="color: var(--text-main); margin-bottom: 0.4rem;"><strong>النوع:</strong> ${item.taxonomy.type}</p>
-                        <p style="color: var(--text-main);"><strong>القوة الإنجازية:</strong> ${item.taxonomy.force}</p>
-                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem; line-height: 1.6;">
+                        <strong>النوع:</strong> <span style="color:var(--text-main);">${item.taxonomy.type}</span> <br>
+                        <strong>القوة الإنجازية:</strong> <span style="color:var(--text-main);">${item.taxonomy.force}</span>
+                    </p>
                 </div>
 
                 <!-- Section 3 -->
-                <div class="pragmatic-section" style="margin-bottom: 2rem;">
-                    <h4><i class="fas fa-check-double"></i> 3. المحدِّدات والشروط التداولية</h4>
-                    <ul style="list-style:none; padding-right: 5px; font-size: 0.95rem;">
-                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">شروط النجاح:</strong> ${item.conditions.felicity}</li>
-                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">استراتيجية التأدب:</strong> ${item.conditions.politeness}</li>
-                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">اتجاه المطابقة:</strong> <span dir="ltr" style="display:inline-block;">${item.conditions.directionOfFit}</span></li>
+                <div class="pragmatic-section" style="margin-bottom: 2.5rem;">
+                    <h4 style="color: var(--azure); font-weight: 900; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                        <i class="fas fa-check-double"></i> 3. المحدِّدات والشروط التداولية
+                    </h4>
+                    <ul style="list-style:none; padding-right: 0; font-size: 0.95rem;">
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); margin-left:8px;">شروط النجاح:</strong> ${item.conditions.felicity}</li>
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); margin-left:8px;">استراتيجية التأدب:</strong> ${item.conditions.politeness}</li>
+                        <li><strong style="color:var(--gold); margin-left:8px;">اتجاه المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></li>
                     </ul>
                 </div>
 
                 <!-- Section 4 -->
-                <div class="pragmatic-section ethnopragmatic-vault" style="background: rgba(162, 210, 255, 0.05); padding: 1.5rem; border-radius: 20px; border: 1px dashed var(--azure); margin-top: 1rem;">
-                    <h4 style="border-bottom: 2px solid var(--azure); margin-bottom: 1rem; padding-bottom: 0.5rem;"><i class="fas fa-map-marked-alt"></i> 4. المقام والسياق الثقافي (Ethnopragmatic)</h4>
+                <div class="pragmatic-section ethnopragmatic-vault" style="background: rgba(162, 210, 255, 0.04); padding: 1.5rem; border-radius: 25px; border: 1px dashed var(--azure);">
+                    <h4 style="color: var(--azure); font-weight: 950; margin-bottom: 1rem;">
+                        <i class="fas fa-map-marked-alt"></i> 4. المقام والسياق الثقافي المحلي
+                    </h4>
                     <ul style="list-style:none; padding-right: 0; font-size: 0.95rem;">
-                        <li style="margin-bottom:0.7rem;"><strong style="color:var(--azure);">المناسبة (Setting):</strong> ${item.context.setting}</li>
-                        <li style="margin-bottom:0.7rem;"><strong style="color:var(--azure);">الأطراف (Participants):</strong> ${item.context.participants}</li>
-                        <li><strong style="color:var(--azure);">التنغيم (Prosody):</strong> ${item.context.prosody}</li>
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--azure); margin-left:8px;">المناسبة:</strong> ${item.context.setting}</li>
+                        <li style="margin-bottom:0.7rem;"><strong style="color:var(--azure); margin-left:8px;">الأطراف:</strong> ${item.context.participants}</li>
+                        <li><strong style="color:var(--azure); margin-left:8px;">التنغيم:</strong> ${item.context.prosody}</li>
                     </ul>
                 </div>
-            </div>
-        `;
-    } else {
-        pragmaticContent = `
-            <div style="padding-top:2rem; border-top:1px solid var(--border); margin-top:2rem;">
-                <h4><i class="fas fa-brain"></i> السياق التداولي</h4>
-                <p style="color:var(--text-muted); white-space: pre-line; font-size:1.1rem;">${item.logic}</p>
             </div>
         `;
     }
 
     article.innerHTML = `
-        ${identityHtml}
-        <div class="corpus-vault-imperial" style="margin: 1.5rem 0; padding: 1.2rem; background: rgba(212, 163, 115, 0.08); border-right: 3px solid var(--gold); border-radius: 0 15px 15px 0;">
-             <p style="color:var(--text-main); font-weight:700; font-size: 0.9rem; margin:0;"><i class="fas fa-microscope" style="color:var(--gold); margin-left:8px;"></i> ${item.analysis}</p>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <h2 style="color:var(--gold); font-weight:950; font-size:1.8rem; margin:0;">${item.lemma}</h2>
+            <span style="font-size:0.7rem; color:var(--text-muted); opacity:0.6;">${item.id}</span>
         </div>
+        ${headerHtml}
+        ${manuscriptBoxHtml}
         ${pragmaticContent}
     `;
+
     hub.appendChild(article);
     if (pushState) history.pushState({page: 'detail', id: item.id}, '', '#detail-' + item.id);
     updateNavbarVisibility();
