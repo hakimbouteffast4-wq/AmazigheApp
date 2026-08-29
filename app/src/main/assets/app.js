@@ -168,8 +168,13 @@ function executeSwitchPane(id, btn, pushState = true) {
     const target = document.getElementById(id);
     if(!target) return;
 
+    document.querySelectorAll('.pane-container').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none'; // Backup for older versions
+    });
+
+    target.classList.add('active');
     target.style.display = 'block';
-    document.querySelectorAll('.pane-container').forEach(p => { if(p.id !== id) p.style.display = 'none'; });
 
     if (id === 'pane-lexicon') {
         const grid = document.getElementById("category-grid");

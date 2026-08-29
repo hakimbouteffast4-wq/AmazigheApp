@@ -103,6 +103,14 @@ body {
 .act-category-card h3 { font-size: 1.3rem; color: var(--text-main); font-weight: 900; }
 .act-category-card:hover { transform: translateY(-10px); border-color: var(--azure); box-shadow: 0 30px 60px var(--azure-glow); }
 
+.pane-container {
+    display: none;
+}
+
+.pane-container.active {
+    display: block;
+}
+
 .lexical-artifact {
     background: var(--surface); backdrop-filter: blur(40px); padding: 4rem;
     border-radius: 60px; border: 1px solid var(--border); box-shadow: 0 40px 100px rgba(0,0,0,0.05); margin-bottom: 4rem;
