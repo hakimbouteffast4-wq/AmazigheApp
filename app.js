@@ -1,8 +1,13 @@
 /**
- * AMAWAL ULTIMATE - Final Corrected Master Script (v3.0)
+ * AMAWAL ULTIMATE - Supabase Live Sync (v3.1)
  */
 
-// 1. Full Scientific Repository
+// 1. Supabase Connection
+const supabaseUrl = 'https://savnjahwekgfnvcpofqe.supabase.co';
+const supabaseKey = 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy'; // مأخوذ من لوحة التحكم الخاصة بك
+const supabase = (typeof window.supabase !== 'undefined') ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+
+// 2. Full Scientific Repository
 const searleTaxonomy = [
     { key: "assertive", label: "إخباريات", icon: "fa-info-circle" },
     { key: "directive", label: "توجيهيات", icon: "fa-hand-point-left" },
