@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // إضافة مساحة إضافية لجعل الواجهة تبدأ من مكان أنزل قليلاً، وإزالة الحشوة السفلية لتوسيط الأزرار
-            v.setPadding(0, systemBars.top + 40, 0, 0);
+            v.setPadding(0, systemBars.top, 0, 0);
             return insets;
         });
     }
