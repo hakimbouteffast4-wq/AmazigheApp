@@ -145,19 +145,101 @@ function executeRenderSingleDetail(item, pushState = true) {
 
     const article = document.createElement("article");
     article.className = "lexical-artifact ultimate-reveal";
+
+    // 1. Identity Section (The Header)
+    let identityHtml = `
+        <div class="identity-section" style="margin-bottom: 2.5rem; border-bottom: 2px solid var(--gold); padding-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="font-size: 2.2rem; color: var(--gold); font-weight: 950; margin:0;">${item.lemma}</h2>
+                <span style="background: var(--azure); color: var(--brand-bg); padding: 0.2rem 0.8rem; border-radius: 12px; font-weight: 900; font-size: 0.75rem;">${item.id}</span>
+            </div>
+            <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 20px; border-right: 4px solid var(--azure);">
+                <h4 style="font-size: 0.85rem; color: var(--azure); margin-bottom: 0.8rem; letter-spacing: 2px;"><i class="fas fa-language"></i> الترجمة والدلالة المعجمية</h4>
+                <p style="font-size: 1.3rem; color: var(--text-main); font-weight: 800; line-height: 1.4;">${item.translation}</p>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;">${item.meaning}</p>
+            </div>
+            <p style="font-size: 1rem; color: var(--gold); margin-top: 1rem; font-style: italic; opacity: 0.8;">
+                <i class="fas fa-quote-right" style="font-size: 0.7rem; margin-left: 5px;"></i> التفريغ: ${item.manuscript}
+            </p>
+        </div>
+    `;
+
+    let pragmaticContent = '';
+    if (item.levels) {
+        // Generate Taxonomy Tags
+        let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin: 1rem 0;">';
+        searleTaxonomy.forEach(cat => {
+            let activeClass = '';
+            let checkIcon = '';
+            if (cat.key === item.taxonomy.apparentKey) {
+                activeClass = 'active-apparent';
+                checkIcon = '<i class="fas fa-check-circle"></i>';
+            } else if (cat.key === item.taxonomy.implicitKey) {
+                activeClass = 'active-implicit';
+                checkIcon = '<i class="fas fa-check-double"></i>';
+            }
+            tagsHtml += `<span class="taxonomy-tag ${activeClass}" style="font-size:0.75rem; padding: 0.3rem 0.8rem;">${checkIcon} ${cat.label}</span>`;
+        });
+        tagsHtml += '</div>';
+
+        pragmaticContent = `
+            <div class="pragmatic-master-grid">
+                <!-- Section 1 -->
+                <div class="pragmatic-section" style="margin-bottom: 2rem;">
+                    <h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4>
+                    <ul style="list-style:none; padding-right: 5px;">
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل اللفظي:</strong> <span style="color:var(--text-main);">${item.levels.locution}</span></li>
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل الإنجازي:</strong> <span style="color:var(--text-main);">${item.levels.illocution}</span></li>
+                        <li style="margin-bottom:0.8rem;"><strong style="color:var(--gold); display:block; font-size:0.9rem;">الفعل التأثيري:</strong> <span style="color:var(--text-main);">${item.levels.perlocution}</span></li>
+                    </ul>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="pragmatic-section" style="margin-bottom: 2rem;">
+                    <h4><i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف الإنجازي</h4>
+                    ${tagsHtml}
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px; font-size: 0.9rem;">
+                        <p style="color: var(--text-main); margin-bottom: 0.4rem;"><strong>النوع:</strong> ${item.taxonomy.type}</p>
+                        <p style="color: var(--text-main);"><strong>القوة الإنجازية:</strong> ${item.taxonomy.force}</p>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="pragmatic-section" style="margin-bottom: 2rem;">
+                    <h4><i class="fas fa-check-double"></i> 3. المحدِّدات والشروط التداولية</h4>
+                    <ul style="list-style:none; padding-right: 5px; font-size: 0.95rem;">
+                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">شروط النجاح:</strong> ${item.conditions.felicity}</li>
+                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">استراتيجية التأدب:</strong> ${item.conditions.politeness}</li>
+                        <li style="margin-bottom:0.5rem;"><strong style="color:var(--azure);">اتجاه المطابقة:</strong> <span dir="ltr" style="display:inline-block;">${item.conditions.directionOfFit}</span></li>
+                    </ul>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="pragmatic-section ethnopragmatic-vault" style="background: rgba(162, 210, 255, 0.05); padding: 1.5rem; border-radius: 20px; border: 1px dashed var(--azure); margin-top: 1rem;">
+                    <h4 style="border-bottom: 2px solid var(--azure); margin-bottom: 1rem; padding-bottom: 0.5rem;"><i class="fas fa-map-marked-alt"></i> 4. المقام والسياق الثقافي (Ethnopragmatic)</h4>
+                    <ul style="list-style:none; padding-right: 0; font-size: 0.95rem;">
+                        <li style="margin-bottom:0.7rem;"><strong style="color:var(--azure);">المناسبة (Setting):</strong> ${item.context.setting}</li>
+                        <li style="margin-bottom:0.7rem;"><strong style="color:var(--azure);">الأطراف (Participants):</strong> ${item.context.participants}</li>
+                        <li><strong style="color:var(--azure);">التنغيم (Prosody):</strong> ${item.context.prosody}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    } else {
+        pragmaticContent = `
+            <div style="padding-top:2rem; border-top:1px solid var(--border); margin-top:2rem;">
+                <h4><i class="fas fa-brain"></i> السياق التداولي</h4>
+                <p style="color:var(--text-muted); white-space: pre-line; font-size:1.1rem;">${item.logic}</p>
+            </div>
+        `;
+    }
+
     article.innerHTML = `
-        <div class="matrix-node" style="margin-bottom:2.5rem;">
-            <h4><i class="fas fa-scroll"></i> الدلالة المعجمية</h4>
-            <p style="font-size:1.4rem; color:var(--text-main);">${item.meaning}</p>
+        ${identityHtml}
+        <div class="corpus-vault-imperial" style="margin: 1.5rem 0; padding: 1.2rem; background: rgba(212, 163, 115, 0.08); border-right: 3px solid var(--gold); border-radius: 0 15px 15px 0;">
+             <p style="color:var(--text-main); font-weight:700; font-size: 0.9rem; margin:0;"><i class="fas fa-microscope" style="color:var(--gold); margin-left:8px;"></i> ${item.analysis}</p>
         </div>
-        <div class="corpus-vault-imperial">
-            <span class="manuscript-prime" style="white-space: pre-line; color:var(--gold);">${item.manuscript}</span>
-            <p style="color:var(--text-muted); font-weight:700; margin-top:2rem;"><i class="fas fa-microscope"></i> ${item.analysis}</p>
-        </div>
-        <div style="padding-top:2rem; border-top:1px solid var(--border); margin-top:2rem;">
-            <h4><i class="fas fa-brain"></i> السياق التداولي</h4>
-            <p style="color:var(--text-muted); white-space: pre-line; font-size:1.1rem;">${item.logic}</p>
-        </div>
+        ${pragmaticContent}
     `;
     hub.appendChild(article);
     if (pushState) history.pushState({page: 'detail', id: item.id}, '', '#detail-' + item.id);
