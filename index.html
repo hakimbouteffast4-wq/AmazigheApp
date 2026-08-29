@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=1.3">
+    <link rel="stylesheet" href="style.css?v=4.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -28,12 +28,6 @@
             </div>
             <a href="#" onclick="switchPane('about-pane', this); toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
             <a href="#" onclick="switchPane('contact-pane', this); toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
-
-            <div class="admin-sidebar-section">
-                <button onclick="switchPane('admin-pane', this); toggleSidebar()" class="admin-btn-nav">
-                    <i class="fas fa-user-shield"></i> تحكم المشرف
-                </button>
-            </div>
         </nav>
     </aside>
 
@@ -67,30 +61,21 @@
             <div id="results-nexus"></div>
         </div>
 
-        <div id="about-pane" class="pane-container" style="display: none;">
+        <div id="about-pane" class="pane-container">
             <div class="contact-card ultimate-reveal">
                 <h2 class="contact-title">حول الدراسة</h2>
                 <p>أرشفة رقمية وتحليل لساني تداولي للتراث الشفهي لقبيلة أيت يوسي.</p>
             </div>
         </div>
 
-        <div id="contact-pane" class="pane-container" style="display: none;">
+        <div id="contact-pane" class="pane-container">
             <div class="contact-card ultimate-reveal">
                 <h2 class="contact-title">اتصل بنا</h2>
                 <p>الباحث الرئيسي: <span style="color: var(--gold); font-weight: bold;">hakimed.b@gmail.com</span></p>
             </div>
         </div>
-
-        <div id="admin-pane" class="pane-container" style="display: none;">
-            <div class="contact-card ultimate-reveal" style="border-top: 4px solid var(--azure);">
-                <i class="fas fa-user-shield fa-4x" style="margin-bottom: 2rem; color: var(--azure); display: block; margin-left: auto; margin-right: auto;"></i>
-                <h2 class="contact-title">لوحة التحكم</h2>
-                <p>إدارة المتن الميداني وتصدير البيانات.</p>
-            </div>
-        </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=2.1"></script>
+    <script src="app.js?v=4.0"></script>
 </body>
 </html>
