@@ -161,6 +161,66 @@ const ultimateRepository = [
             participants: "كبار القبيلة أو المحكمين في مواجهة أطراف النزاع.",
             prosody: "نبرة صارمة، وقورة، ومقنعة (Authoritative)."
         }
+    },
+    {
+        id: "IZLI-102",
+        lemma: "Aḍu n Tayri / ⴰⴹⵓ ⵏ ⵜⴰⵢⵔⵉ",
+        meaning: "وصف قوة الحب وغموض مسالكه التي لا تخضع للحساب العقلي.",
+        translation: "ريح الحب جدار يحيط بنا، فكيف لنا أن نحسب لها حساباً؟",
+        manuscript: "Aḍu n tayri d lḥit i t-id-igran\nmamek ad as-ng nttni lḥsab",
+        analysis: "استقصاء ميداني: يبرز البيت عجز الإنسان أمام سطوة العواطف وتحولها إلى قدر محتوم (Awal yffrn).",
+        category: "izlan",
+        levels: {
+            locution: "جملة استعارية تشبه الحب بالريح العاتية وبالجدار المحيط.",
+            illocution: "فعل 'اعتراف بالعجز' وبث الشكوى من لوعة الهوى.",
+            perlocution: "إثارة التعاطف الوجداني وتقاسم التجربة الإنسانية المرة مع السامع."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: تعبيري (Expressive)",
+            force: "الشكوى والبوح الوجداني",
+            apparentKey: "assertive",
+            implicitKey: "expressive"
+        },
+        conditions: {
+            felicity: "شرط الإخلاص والصدق الوجداني (Sincerity)",
+            politeness: "التعبير عن الذات بعيداً عن القيود العرفية الصارمة",
+            directionOfFit: "Word-to-World (وصف حال المتكلم الباطنية)"
+        },
+        context: {
+            setting: "أمسيات إنشاد الشعر (Izlan) في المناسبات الاجتماعية.",
+            participants: "شاعر (محب) ومستمعون يشاركونه الذوق واللوعة.",
+            prosody: "نبرة شجية، حزينة، وتأملية عميقة."
+        }
+    },
+    {
+        id: "PROV-102",
+        lemma: "Awal n imzwura / ⴰⵡⴰⵍ ⵏ ⵉⵎⵣⵡⵓⵔⴰ",
+        meaning: "الحكمة الموروثة وسلطة القول القديم في توجيه الحاضر.",
+        translation: "كلام الأولين (الأجداد) ميزان العقل ومرجع الأرض.",
+        manuscript: "Awal n imzwura d lqist n tmurt",
+        analysis: "الارتقاء المعرفي: الانتقال من مجرد قول عابر إلى مرجعية عرفية وقانونية ملزمة للجماعة.",
+        category: "proverbs",
+        levels: {
+            locution: "جملة خبرية تقريرية تربط القول الحكيم بالأرض والعدل (Lqist).",
+            illocution: "فعل 'استدلال' و 'تثبيت' لشرعية الفعل بناءً على العرف التاريخي.",
+            perlocution: "فرض الاحترام للقرار المتخذ وإنهاء الجدال بالعودة للأصول الثابتة."
+        },
+        taxonomy: {
+            type: "الظاهر: إخباري (Assertive) | المضمر: إعلاني (Declarative)",
+            force: "الإلزام العرفي والشرعية التاريخية",
+            apparentKey: "assertive",
+            implicitKey: "declarative"
+        },
+        conditions: {
+            felicity: "شرط السلطة (كبير الجماعة) والتمهيد المناسب",
+            politeness: "التلطيف عبر الاحتماء بسلطة 'الأسلاف' بدلاً من المواجهة المباشرة",
+            directionOfFit: "World-to-Word (إخضاع الواقع للنموذج الموروث)"
+        },
+        context: {
+            setting: "مجالس العرف (Agraw) لاتخاذ قرارات مصيرية أو فض نزاعات.",
+            participants: "حكماء القبيلة في مواجهة الشباب أو أطراف الخصومة.",
+            prosody: "نبرة وقورة، رصينة، وحازمة جداً."
+        }
     }
 ];
 
