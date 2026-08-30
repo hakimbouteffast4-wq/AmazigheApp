@@ -1,15 +1,15 @@
 /**
- * AMAWAL ULTIMATE - Final Cloud Bridge (v5.2)
+ * AMAWAL ULTIMATE - Official Supabase Connection (v5.3)
  */
 
-// 1. Supabase Config (Safe Init)
+// 1. Supabase Client Initialization (CDN Compatible)
 const supabaseUrl = 'https://savnjahwekgfnvcpofqe.supabase.co';
 const supabaseKey = 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy';
-let supabase = null;
 
-if (typeof window.supabase !== 'undefined') {
-    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-}
+// الوصول للمكتبة من خلال الكائن العالمي window لضمان عدم تعطل الأزرار
+const supabase = (typeof window.supabase !== 'undefined')
+    ? window.supabase.createClient(supabaseUrl, supabaseKey)
+    : null;
 
 const searleTaxonomy = [
     { key: "assertive", label: "إخباريات", icon: "fa-info-circle" },
