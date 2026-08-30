@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AMAWAL INSTANT ENGINE v7.0 - Ultra Responsive
  */
 
@@ -103,7 +103,7 @@ window.handleAddBtn = async function() {
     }
 
     if (typeof window.supabase === 'undefined') return;
-    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy');
+    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
 
     // 2. تغيير شكل الزر أثناء التحميل
     saveBtn.disabled = true;
@@ -142,7 +142,7 @@ window.handleAddBtn = async function() {
 // 4. Background Cloud Sync (Won't block buttons)
 async function syncCloud() {
     if (typeof window.supabase === 'undefined') return;
-    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy');
+    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
     const { data } = await client.from('speech_acts').select('*');
     if (data && data.length > 0) {
         window.masterRepo = data.map(item => ({
