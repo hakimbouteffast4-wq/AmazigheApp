@@ -18,6 +18,7 @@ const ultimateRepository = [
         translation: "كلام الأولين مرجع الأرض وميزان الحق.", manuscript: "Awal n imzwura d lqist n tmurt",
         analysis: "نتيجة تجريبية: القول يتحول من منطوق عابر إلى مؤسسة قانونية (Lqist).",
         levels: { locution: "جملة خبرية تربط القول بالأرض.", illocution: "فعل 'تثبيت شرعية' للفعل الحالي.", perlocution: "إنهاء الجدل والخصومة بالعودة للأصل." },
+        implicature: { maxim: "قانون الكيف (الاستناد لمرجعية تاريخية)", meaning: "تجاوز المنطق الفردي الحالي لصالح العدالة الجماعية الموروثة." },
         taxonomy: { type: "الظاهر: إخباري | المضمر: إعلاني", force: "التثبيت والشرعية", apparentKey: "assertive", implicitKey: "declarative" },
         conditions: { felicity: "شرط السلطة الجماعية", politeness: "الاحتماء بسلطة الأجداد", directionOfFit: "World-to-Word" },
         context: { setting: "مجلس العرف (Agraw).", participants: "كبار القبيلة تجاه المتنازعين.", prosody: "نبرة وقورة وحازمة." }
@@ -28,6 +29,7 @@ const ultimateRepository = [
         translation: "شربه / استولى عليه", manuscript: "turud unna wr irri lḥma iddud iswit",
         analysis: "الارتقاء المعرفي: تحول من الاستهلاك العضوي إلى الهيمنة التداولية المطلقة.",
         levels: { locution: "فعل تام يعبر عن الارتواء والاستهلاك المادي.", illocution: "فعل 'استحواذ رمزي' يعبر عن التمكن والمصادرة.", perlocution: "إثبات الهيمنة وتأطير سلطة المتحدث." },
+        implicature: { maxim: "قانون الملائمة (خرق مجازي)", meaning: "الاستيلاء على الموارد ليس مجرد فعل بيولوجي بل هو ممارسة للسلطة والتمكن." },
         taxonomy: { type: "الظاهر: إخباري | المضمر: تعبيري", force: "الاستحواذ والمصادرة", apparentKey: "assertive", implicitKey: "expressive" },
         conditions: { felicity: "شرط السلطة والتمكن من الموارد", politeness: "تجاوز التلطيف لفرض واقع جديد", directionOfFit: "World-to-Word" },
         context: { setting: "نزاعات على ملكية موارد مائية.", participants: "متحدث يثبت حقه تجاه منافس.", prosody: "نبرة حازمة وقاطعة." }
@@ -38,6 +40,7 @@ const ultimateRepository = [
         translation: "أعددت الصديق ككأس بارد، فغدر به غريب.", manuscript: "iyya usmun amm lkass nsirs t ad iṣmḍ\nturud unna wr irri lḥma iddud iswit",
         analysis: "استقصاء ميداني: يظهر البيت قوة الفعل 'iswit' كفعل استحواذ اجتماعي مفاجئ.",
         levels: { locution: "استعارة مادية تربط بين الرفيق والمتاع.", illocution: "فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل.", perlocution: "إشعار الآخر بفداحة فعله دون تصريح مباشر." },
+        implicature: { maxim: "قانون الملائمة والكيف (خرق مجازي)", meaning: "الرفيق الشريك في الحياة ليس ملكاً للجميع ككأس الماء؛ وأخذه غدر غير مقبول." },
         taxonomy: { type: "الظاهر: إخباري | المضمر: توجيهي غير مباشر", force: "العتاب واللوم الضمني", apparentKey: "assertive", implicitKey: "directive" },
         conditions: { felicity: "شرط الإخلاص والنية المبيتة", politeness: "حفظ ماء الوجه عبر الرمزية", directionOfFit: "Word-to-World" },
         context: { setting: "جلسة سمر تفتقد لروح الثقة.", participants: "شاعر متضرر ومخاطب خائن.", prosody: "نبرة متهكمة ممزوجة بالمرارة." }
@@ -117,13 +120,27 @@ window.executeRenderSingleDetail = function(item, pushState = true) {
     });
     tagsHtml += '</div>';
 
+    let implicatureHtml = '';
+    if (item.implicature) {
+        implicatureHtml = `
+            <div class="pragmatic-section implicature-section" style="margin-bottom:2.5rem; border-right: 3px solid var(--gold); padding-right: 1rem; background: rgba(212, 163, 115, 0.05); padding: 1rem; border-radius: 0 15px 15px 0;">
+                <h4 style="color: var(--gold); font-size: 0.95rem; margin-bottom: 0.8rem;"><i class="fas fa-comment-dots"></i> 1.1. تحليل الاستلزام الحواري (Gricean)</h4>
+                <p style="font-size:0.95rem; margin-bottom:0.5rem; color:var(--text-main);"><strong>القانون المخروق:</strong> ${item.implicature.maxim}</p>
+                <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.6;"><strong>المعنى المستلزم:</strong> ${item.implicature.meaning}</p>
+            </div>
+        `;
+    }
+
     article.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.lemma}</h2></div>
         ${headerHtml}${manuscriptBoxHtml}
         <div class="pragmatic-master-grid">
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-bullseye"></i> 2. المقاصد</h4>${tagsHtml}<p style="font-size:0.9rem;"><strong>النوع:</strong> ${item.taxonomy.type} <br> <strong>القوة:</strong> ${item.taxonomy.force}</p></div>
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-check-double"></i> 3. المحددات والشروط</h4><p style="font-size:0.9rem;"><strong>النجاح:</strong> ${item.conditions.felicity} <br> <strong>التأدب:</strong> ${item.conditions.politeness} <br> <strong>المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></p></div>
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">الفعل اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الفعل الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">الفعل التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
+
+            ${implicatureHtml}
+
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف الإنجازي</h4>${tagsHtml}<p style="font-size:0.9rem;"><strong>النوع:</strong> ${item.taxonomy.type} <br> <strong>القوة الإنجازية:</strong> ${item.taxonomy.force}</p></div>
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-check-double"></i> 3. المحددات والشروط التداولية</h4><p style="font-size:0.9rem;"><strong>النجاح:</strong> ${item.conditions.felicity} <br> <strong>التأدب:</strong> ${item.conditions.politeness} <br> <strong>المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></p></div>
             <div class="pragmatic-section ethnopragmatic-vault" style="background:rgba(162,210,255,0.05); padding:1rem; border-radius:15px; border:1px dashed var(--azure);"><h4><i class="fas fa-map-marked-alt"></i> 4. المقام الثقافي المحلي</h4><p style="font-size:0.9rem;"><strong>المناسبة:</strong> ${item.context.setting} <br> <strong>الأطراف:</strong> ${item.context.participants} <br> <strong>التنغيم:</strong> ${item.context.prosody}</p></div>
         </div>
     `;
