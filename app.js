@@ -87,7 +87,30 @@ window.toggleTheme = function() {
     document.documentElement.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
 };
 
-// 3. Background Cloud Sync (Won't block buttons)
+// 3. Admin Functionality
+window.handleAddBtn = async function() {
+    const exp = document.getElementById("input-exp").value;
+    const imp = document.getElementById("input-imp").value;
+    if(!exp || !imp) return alert("يرجى ملء الحقول");
+
+    if (typeof window.supabase === 'undefined') return;
+    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy');
+
+    try {
+        const { error } = await client.from('speech_acts').insert([{
+            id: 'ACT-' + Date.now(), expression: exp, implicature_meaning: imp, category: 'proverbs'
+        }]);
+        if (error) throw error;
+        alert("تم الحفظ بنجاح!");
+        document.getElementById("input-exp").value = "";
+        document.getElementById("input-imp").value = "";
+        syncCloud();
+    } catch (err) {
+        alert("خطأ في الحفظ: " + err.message);
+    }
+};
+
+// 4. Background Cloud Sync (Won't block buttons)
 async function syncCloud() {
     if (typeof window.supabase === 'undefined') return;
     const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy');
