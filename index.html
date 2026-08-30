@@ -28,6 +28,13 @@
             </div>
             <a href="#" onclick="switchPane('about-pane', this); toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
             <a href="#" onclick="switchPane('contact-pane', this); toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
+
+            <!-- زر المشرف المضاف حديثاً -->
+            <div class="admin-sidebar-section" style="margin-top: auto; padding: 1.5rem; border-top: 1px solid var(--border);">
+                <button onclick="switchPane('admin-pane', this); toggleSidebar()" class="admin-btn-nav" style="width: 100%; padding: 1rem; border-radius: 12px; background: rgba(212, 163, 115, 0.1); border: 1px solid var(--gold); color: var(--gold); font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;">
+                    <i class="fas fa-user-shield"></i> لوحة المشرف
+                </button>
+            </div>
         </nav>
     </aside>
 
