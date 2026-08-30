@@ -13,7 +13,7 @@ const searleTaxonomy = [
 
 const ultimateRepository = [
     {
-        id: "EXP-001", lemma: "Awal n imzwura / ⴰⵡⴰⵍ ⵏ ⵉⵎⵣⵡⵓⵔⴰ", category: "proverbs",
+        id: "EXP-001", expression: "Awal n imzwura / ⴰⵡⴰⵍ ⵏ ⵉⵎⵣⵡⵓⵔⴰ", category: "proverbs",
         meaning: "سلطة الموروث القولي في ضبط السلوك الجماعي.",
         translation: "كلام الأولين مرجع الأرض وميزان الحق.", manuscript: "Awal n imzwura d lqist n tmurt",
         analysis: "نتيجة تجريبية: القول يتحول من منطوق عابر إلى مؤسسة قانونية (Lqist).",
@@ -24,7 +24,7 @@ const ultimateRepository = [
         context: { setting: "مجلس العرف (Agraw).", participants: "كبار القبيلة تجاه المتنازعين.", prosody: "نبرة وقورة وحازمة." }
     },
     {
-        id: "ULT-101", lemma: "Iswa / ⵉⵙⵡⴰ", category: "idioms",
+        id: "ULT-101", expression: "Iswa / ⵉⵙⵡⴰ", category: "idioms",
         meaning: "الاستيعاب الفيزيولوجي للمواد السائلة والعضوية.",
         translation: "شربه / استولى عليه", manuscript: "turud unna wr irri lḥma iddud iswit",
         analysis: "الارتقاء المعرفي: تحول من الاستهلاك العضوي إلى الهيمنة التداولية المطلقة.",
@@ -35,17 +35,18 @@ const ultimateRepository = [
         context: { setting: "نزاعات على ملكية موارد مائية.", participants: "متحدث يثبت حقه تجاه منافس.", prosody: "نبرة حازمة وقاطعة." }
     },
     {
-        id: "IZLI-101", lemma: "Izli n Usmun / إيزلي الرفيق", category: "izlan",
+        id: "IZLI-101", expression: "Izli n Usmun / إيزلي الرفيق", category: "izlan",
         meaning: "تشبيه الرفيق بالكأس الذي يوضع ليبرد، فيأتي من يشربه دون استئذان.",
         translation: "أعددت الصديق ككأس بارد، فغدر به غريب.", manuscript: "iyya usmun amm lkass nsirs t ad iṣmḍ\nturud unna wr irri lḥma iddud iswit",
         analysis: "استقصاء ميداني: يظهر البيت قوة الفعل 'iswit' كفعل استحواذ اجتماعي مفاجئ.",
         levels: { locution: "استعارة مادية تربط بين الرفيق والمتاع.", illocution: "فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل.", perlocution: "إشعار الآخر بفداحة فعله دون تصريح مباشر." },
         implicature: { maxim: "قانون الملائمة والكيف (خرق مجازي)", meaning: "الرفيق الشريك في الحياة ليس ملكاً للجميع ككأس الماء؛ وأخذه غدر غير مقبول." },
         taxonomy: { type: "الظاهر: إخباري | المضمر: توجيهي غير مباشر", force: "العتاب واللوم الضمني", apparentKey: "assertive", implicitKey: "directive" },
-        conditions: { felicity: "شرط الإخلاص والنية المبيتة", politeness: "حفظ ماء الوجه عبر الرمزية", directionOfFit: "Word-to-World" },
+        conditions: { felicity: "شرط الإخلاص والنية المبيتة", politeness: "حفظ ماء الوجه عبر الرمزية", directionOfFit: "World-to-Word" },
         context: { setting: "جلسة سمر تفتقد لروح الثقة.", participants: "شاعر متضرر ومخاطب خائن.", prosody: "نبرة متهكمة ممزوجة بالمرارة." }
     }
 ];
+
 
 // 2. Navigation Functions (Explicitly Global)
 window.executeSwitchPane = function(id, btn, pushState = true) {
@@ -93,7 +94,7 @@ window.setSearchCategory = function(cat) {
         const div = document.createElement("div");
         div.className = "act-category-card ultimate-reveal";
         div.style.cssText = "margin-bottom:1rem; padding:1.2rem 2rem; display:flex; justify-content:space-between; align-items:center; border-right:4px solid var(--azure); cursor:pointer;";
-        div.innerHTML = `<span style="font-weight:900; font-size:1.1rem; color:var(--text-main);">${item.lemma}</span><i class="fas fa-chevron-left" style="color:var(--azure);"></i>`;
+        div.innerHTML = `<span style="font-weight:900; font-size:1.1rem; color:var(--text-main);">${item.expression}</span><i class="fas fa-chevron-left" style="color:var(--azure);"></i>`;
         div.onclick = () => executeRenderSingleDetail(item, true);
         nexus.appendChild(div);
     });
@@ -132,7 +133,7 @@ window.executeRenderSingleDetail = function(item, pushState = true) {
     }
 
     article.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.lemma}</h2></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.expression}</h2></div>
         ${headerHtml}${manuscriptBoxHtml}
         <div class="pragmatic-master-grid">
             <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">الفعل اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الفعل الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">الفعل التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
@@ -183,4 +184,27 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.setAttribute('data-theme', savedTheme);
     history.replaceState({ page: 'pane-lexicon' }, '', '#home');
     updateNavbarVisibility();
+
+    // Live Sync with Supabase (v4.2 Mapping)
+    if (supabase) {
+        supabase.from('speech_acts').select('*').then(({data, error}) => {
+            if (!error && data && data.length > 0) {
+                ultimateRepository = data.map(item => ({
+                    id: item.id,
+                    expression: item.expression,
+                    meaning: item.meaning,
+                    translation: item.translation,
+                    manuscript: item.manuscript,
+                    analysis: item.analysis,
+                    category: item.category,
+                    levels: { locution: item.locution, illocution: item.illocution, perlocution: item.perlocution },
+                    implicature: { maxim: item.implicature_maxim, meaning: item.implicature_meaning },
+                    taxonomy: { type: item.taxonomy_type, force: item.taxonomy_force, apparentKey: item.apparent_key, implicitKey: item.implicit_key },
+                    conditions: { felicity: item.felicity, politeness: item.politeness, directionOfFit: item.direction_of_fit },
+                    context: { setting: item.context_setting, participants: item.context_participants, prosody: item.context_prosody }
+                }));
+                console.log("Cloud Data Synced with 'expression' column.");
+            }
+        });
+    }
 });
