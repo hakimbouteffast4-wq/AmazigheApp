@@ -290,3 +290,29 @@ body {
     .manuscript-prime { font-size: 1.6rem; }
     .sidebar { width: 85%; }
 }
+
+/* تصحيح حقول الإدخال في نموذج إدارة المتن الميداني */
+input[type="text"],
+textarea {
+    background-color: #ffffff !important; /* خلفية بيضاء نقية */
+    color: #1a1a1a !important;            /* نص داكن واضح */
+    border: 1px solid #d1d5db !important; /* إطار رمادي خفيف */
+    border-radius: 8px !important;       /* حواف دائرية متناسقة */
+    padding: 12px 16px !important;       /* مسافة داخلية مريحة للكتابة */
+    font-size: 16px !important;
+}
+
+/* التنسيق عند النقر داخل الحقل */
+input[type="text"]:focus,
+textarea:focus {
+    outline: none !important;
+    border-color: #c08457 !important;     /* نفس لون زر الحفظ البرتقالي/البني */
+    box-shadow: 0 0 0 3px rgba(192, 132, 87, 0.2) !important;
+}
+
+/* تنسيق النص التوضيحي (Placeholder) */
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #6b7280 !important;           /* لون رمادي واضح للـ Placeholder */
+    opacity: 1 !important;
+}
