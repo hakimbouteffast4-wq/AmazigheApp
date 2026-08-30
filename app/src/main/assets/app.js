@@ -1,8 +1,12 @@
 /**
- * AMAWAL ULTIMATE - Bulletproof Stable Logic (v4.0)
+ * AMAWAL ULTIMATE - Final Unified Master (v5.0)
  */
 
-// 1. Full Immutable Repository
+// 1. Supabase Initialization
+const supabaseUrl = 'https://savnjahwekgfnvcpofqe.supabase.co';
+const supabaseKey = 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy';
+const supabase = (typeof window.supabase !== 'undefined') ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+
 const searleTaxonomy = [
     { key: "assertive", label: "إخباريات", icon: "fa-info-circle" },
     { key: "directive", label: "توجيهيات", icon: "fa-hand-point-left" },
@@ -11,9 +15,9 @@ const searleTaxonomy = [
     { key: "declarative", label: "إعلانات", icon: "fa-bullhorn" }
 ];
 
-const ultimateRepository = [
+let ultimateRepository = [
     {
-        id: "EXP-001", expression: "Awal n imzwura / ⴰⵡⴰⵍ ⵏ ⵉⵎⵣⵡⵓⵔⴰ", category: "proverbs",
+        id: "EXP-PROV-001", expression: "Awal n imzwura d lqist n tmurt", category: "proverbs",
         meaning: "سلطة الموروث القولي في ضبط السلوك الجماعي.",
         translation: "كلام الأولين مرجع الأرض وميزان الحق.", manuscript: "Awal n imzwura d lqist n tmurt",
         analysis: "نتيجة تجريبية: القول يتحول من منطوق عابر إلى مؤسسة قانونية (Lqist).",
@@ -22,37 +26,15 @@ const ultimateRepository = [
         taxonomy: { type: "الظاهر: إخباري | المضمر: إعلاني", force: "التثبيت والشرعية", apparentKey: "assertive", implicitKey: "declarative" },
         conditions: { felicity: "شرط السلطة الجماعية", politeness: "الاحتماء بسلطة الأجداد", directionOfFit: "World-to-Word" },
         context: { setting: "مجلس العرف (Agraw).", participants: "كبار القبيلة تجاه المتنازعين.", prosody: "نبرة وقورة وحازمة." }
-    },
-    {
-        id: "ULT-101", expression: "Iswa / ⵉⵙⵡⴰ", category: "idioms",
-        meaning: "الاستيعاب الفيزيولوجي للمواد السائلة والعضوية.",
-        translation: "شربه / استولى عليه", manuscript: "turud unna wr irri lḥma iddud iswit",
-        analysis: "الارتقاء المعرفي: تحول من الاستهلاك العضوي إلى الهيمنة التداولية المطلقة.",
-        levels: { locution: "فعل تام يعبر عن الارتواء والاستهلاك المادي.", illocution: "فعل 'استحواذ رمزي' يعبر عن التمكن والمصادرة.", perlocution: "إثبات الهيمنة وتأطير سلطة المتحدث." },
-        implicature: { maxim: "قانون الملائمة (خرق مجازي)", meaning: "الاستيلاء على الموارد ليس مجرد فعل بيولوجي بل هو ممارسة للسلطة والتمكن." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: تعبيري", force: "الاستحواذ والمصادرة", apparentKey: "assertive", implicitKey: "expressive" },
-        conditions: { felicity: "شرط السلطة والتمكن من الموارد", politeness: "تجاوز التلطيف لفرض واقع جديد", directionOfFit: "World-to-Word" },
-        context: { setting: "نزاعات على ملكية موارد مائية.", participants: "متحدث يثبت حقه تجاه منافس.", prosody: "نبرة حازمة وقاطعة." }
-    },
-    {
-        id: "IZLI-101", expression: "Izli n Usmun / إيزلي الرفيق", category: "izlan",
-        meaning: "تشبيه الرفيق بالكأس الذي يوضع ليبرد، فيأتي من يشربه دون استئذان.",
-        translation: "أعددت الصديق ككأس بارد، فغدر به غريب.", manuscript: "iyya usmun amm lkass nsirs t ad iṣmḍ\nturud unna wr irri lḥma iddud iswit",
-        analysis: "استقصاء ميداني: يظهر البيت قوة الفعل 'iswit' كفعل استحواذ اجتماعي مفاجئ.",
-        levels: { locution: "استعارة مادية تربط بين الرفيق والمتاع.", illocution: "فعل 'عتاب غير مباشر' وإسقاط خيبة الأمل.", perlocution: "إشعار الآخر بفداحة فعله دون تصريح مباشر." },
-        implicature: { maxim: "قانون الملائمة والكيف (خرق مجازي)", meaning: "الرفيق الشريك في الحياة ليس ملكاً للجميع ككأس الماء؛ وأخذه غدر غير مقبول." },
-        taxonomy: { type: "الظاهر: إخباري | المضمر: توجيهي غير مباشر", force: "العتاب واللوم الضمني", apparentKey: "assertive", implicitKey: "directive" },
-        conditions: { felicity: "شرط الإخلاص والنية المبيتة", politeness: "حفظ ماء الوجه عبر الرمزية", directionOfFit: "World-to-Word" },
-        context: { setting: "جلسة سمر تفتقد لروح الثقة.", participants: "شاعر متضرر ومخاطب خائن.", prosody: "نبرة متهكمة ممزوجة بالمرارة." }
     }
 ];
 
-
-// 2. Navigation Functions (Explicitly Global)
+// 2. Core Navigation
 window.executeSwitchPane = function(id, btn, pushState = true) {
     const target = document.getElementById(id);
     if (!target) return;
 
+    // Strict Display Toggle
     document.querySelectorAll('.pane-container').forEach(p => {
         p.classList.remove('active');
         p.style.display = 'none';
@@ -87,7 +69,7 @@ window.setSearchCategory = function(cat) {
 
     const results = ultimateRepository.filter(i => i.category === cat);
     if (results.length === 0) {
-        nexus.innerHTML = "<p style='text-align:center; padding:2rem; opacity:0.5;'>قريباً... يتم جلب البيانات</p>";
+        nexus.innerHTML = "<div style='text-align:center; padding:4rem; opacity:0.6;'><i class='fas fa-folder-open fa-3x' style='margin-bottom:1rem;'></i><br>قريباً... يتم جلب المادة العلمية من السحاب</div>";
     }
 
     results.forEach(item => {
@@ -111,13 +93,11 @@ window.executeRenderSingleDetail = function(item, pushState = true) {
     const article = document.createElement("article");
     article.className = "lexical-artifact ultimate-reveal";
 
-    let headerHtml = `<div class="matrix-node" style="margin-bottom:2rem;"><h4 style="font-size:0.85rem; color:var(--azure); margin-bottom:1rem;"><i class="fas fa-scroll"></i> الدلالة المعجمية</h4><p style="font-size:1.5rem; color:var(--text-main); font-weight:800;">${item.meaning}</p></div>`;
-    let manuscriptBoxHtml = `<div class="corpus-vault-imperial" style="background:#5d4037; border-radius:20px; padding:2rem 1.5rem; margin-bottom:2.5rem;"><div style="text-align:center; margin-bottom:1.5rem;"><span style="color:#d4a373; font-size:1.6rem; font-style:italic; white-space:pre-line;">${item.manuscript}</span></div><div style="border-top:1px solid rgba(212, 163, 115, 0.2); padding-top:1rem;"><h4 style="color:#d4a373; font-size:0.9rem;"><i class="fas fa-microscope"></i> استقصاء ميداني:</h4><p style="color:#bcaaa4; font-size:0.95rem;">${item.analysis}</p></div></div>`;
-
     let tagsHtml = '<div class="taxonomy-tags-container" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin:1.2rem 0;">';
     searleTaxonomy.forEach(cat => {
         let active = (cat.key === item.taxonomy.apparentKey) ? 'active-apparent' : (cat.key === item.taxonomy.implicitKey ? 'active-implicit' : '');
-        tagsHtml += `<span class="taxonomy-tag ${active}" style="font-size:0.75rem;"><i class="fas ${cat.icon}"></i> ${cat.label}</span>`;
+        let icon = (cat.key === item.taxonomy.apparentKey) ? 'fa-check-circle' : (cat.key === item.taxonomy.implicitKey ? 'fa-check-double' : cat.icon);
+        tagsHtml += `<span class="taxonomy-tag ${active}" style="font-size:0.75rem;"><i class="fas ${icon}"></i> ${cat.label}</span>`;
     });
     tagsHtml += '</div>';
 
@@ -134,12 +114,11 @@ window.executeRenderSingleDetail = function(item, pushState = true) {
 
     article.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;"><h2 style="color:var(--gold); font-weight:950; font-size:1.8rem;">${item.expression}</h2></div>
-        ${headerHtml}${manuscriptBoxHtml}
+        <div class="matrix-node" style="margin-bottom:2rem;"><h4 style="font-size:0.85rem; color:var(--azure); margin-bottom:1rem;"><i class="fas fa-scroll"></i> الدلالة المعجمية</h4><p style="font-size:1.5rem; color:var(--text-main); font-weight:800;">${item.meaning}</p></div>
+        <div class="corpus-vault-imperial" style="background:#5d4037; border-radius:20px; padding:2rem 1.5rem; margin-bottom:2.5rem;"><div style="text-align:center; margin-bottom:1.5rem;"><span style="color:#d4a373; font-size:1.6rem; font-style:italic; white-space:pre-line;">${item.manuscript}</span></div><div style="border-top:1px solid rgba(212, 163, 115, 0.2); padding-top:1rem;"><h4 style="color:#d4a373; font-size:0.9rem;"><i class="fas fa-microscope"></i> استقصاء ميداني:</h4><p style="color:#bcaaa4; font-size:0.95rem;">${item.analysis}</p></div></div>
         <div class="pragmatic-master-grid">
-            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">الفعل اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الفعل الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">الفعل التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
-
+            <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-layer-group"></i> 1. مستويات التلفظ والخطاب</h4><ul style="list-style:none; padding:0;"><li><strong style="color:var(--gold);">اللفظي:</strong> ${item.levels.locution}</li><li><strong style="color:var(--gold);">الإنجازي:</strong> ${item.levels.illocution}</li><li><strong style="color:var(--gold);">التأثيري:</strong> ${item.levels.perlocution}</li></ul></div>
             ${implicatureHtml}
-
             <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-bullseye"></i> 2. المقاصد والتصنيف الإنجازي</h4>${tagsHtml}<p style="font-size:0.9rem;"><strong>النوع:</strong> ${item.taxonomy.type} <br> <strong>القوة الإنجازية:</strong> ${item.taxonomy.force}</p></div>
             <div class="pragmatic-section" style="margin-bottom:2rem;"><h4><i class="fas fa-check-double"></i> 3. المحددات والشروط التداولية</h4><p style="font-size:0.9rem;"><strong>النجاح:</strong> ${item.conditions.felicity} <br> <strong>التأدب:</strong> ${item.conditions.politeness} <br> <strong>المطابقة:</strong> <span dir="ltr">${item.conditions.directionOfFit}</span></p></div>
             <div class="pragmatic-section ethnopragmatic-vault" style="background:rgba(162,210,255,0.05); padding:1rem; border-radius:15px; border:1px dashed var(--azure);"><h4><i class="fas fa-map-marked-alt"></i> 4. المقام الثقافي المحلي</h4><p style="font-size:0.9rem;"><strong>المناسبة:</strong> ${item.context.setting} <br> <strong>الأطراف:</strong> ${item.context.participants} <br> <strong>التنغيم:</strong> ${item.context.prosody}</p></div>
@@ -150,12 +129,13 @@ window.executeRenderSingleDetail = function(item, pushState = true) {
     updateNavbarVisibility();
 };
 
-// 3. UI Helpers
+// 3. System Helpers
 window.updateNavbarVisibility = function() {
     const b = document.getElementById('back-btn'), m = document.getElementById('menu-btn'), g = document.getElementById('category-grid');
     const isDetail = location.hash.startsWith('#detail-');
-    if (b) b.style.display = isDetail ? 'flex' : 'none';
-    if (m) m.style.display = isDetail ? 'none' : 'flex';
+    const isMainHome = (location.hash === '#home' || location.hash === '' || location.hash === '#pane-lexicon') && g && g.style.display !== 'none';
+    if (b) b.style.display = isMainHome ? 'none' : 'flex';
+    if (m) m.style.display = isMainHome ? 'flex' : 'none';
 };
 
 window.toggleSidebar = function() {
@@ -185,25 +165,18 @@ document.addEventListener("DOMContentLoaded", () => {
     history.replaceState({ page: 'pane-lexicon' }, '', '#home');
     updateNavbarVisibility();
 
-    // Live Sync with Supabase (v4.2 Mapping)
     if (supabase) {
         supabase.from('speech_acts').select('*').then(({data, error}) => {
             if (!error && data && data.length > 0) {
                 ultimateRepository = data.map(item => ({
-                    id: item.id,
-                    expression: item.expression,
-                    meaning: item.meaning,
-                    translation: item.translation,
-                    manuscript: item.manuscript,
-                    analysis: item.analysis,
-                    category: item.category,
+                    id: item.id, expression: item.expression, meaning: item.meaning, translation: item.translation,
+                    manuscript: item.manuscript, analysis: item.analysis, category: item.category,
                     levels: { locution: item.locution, illocution: item.illocution, perlocution: item.perlocution },
                     implicature: { maxim: item.implicature_maxim, meaning: item.implicature_meaning },
-                    taxonomy: { type: item.taxonomy_type, force: item.taxonomy_force, apparentKey: item.apparent_key, implicitKey: item.implicit_key },
+                    taxonomy: { type: item.taxonomy_type, force: item.taxonomy_force, apparentKey: item.apparent_key, implicit_key: item.implicit_key },
                     conditions: { felicity: item.felicity, politeness: item.politeness, directionOfFit: item.direction_of_fit },
                     context: { setting: item.context_setting, participants: item.context_participants, prosody: item.context_prosody }
                 }));
-                console.log("Cloud Data Synced with 'expression' column.");
             }
         });
     }
