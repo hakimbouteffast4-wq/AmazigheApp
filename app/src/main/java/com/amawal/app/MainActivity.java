@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setAllowFileAccess(true);
-        settings.setAllowContentAccess(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setUseWideViewPort(true);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE); // إجبار التطبيق على تحميل آخر تحديث للأزرار
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         
         webView.clearCache(true);
         webView.setHorizontalScrollBarEnabled(false);
