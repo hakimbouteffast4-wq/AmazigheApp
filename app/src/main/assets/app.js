@@ -87,26 +87,55 @@ window.toggleTheme = function() {
     document.documentElement.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
 };
 
-// 3. Admin Functionality
+// 3. Admin Functionality - (Based on your v7.7 Professional Logic)
 window.handleAddBtn = async function() {
-    const exp = document.getElementById("expressionInput").value;
-    const imp = document.getElementById("meaningInput").value;
-    if(!exp || !imp) return alert("يرجى ملء الحقول");
+    const saveBtn = document.getElementById("save-btn");
+    const expressionInput = document.getElementById("expressionInput");
+    const meaningInput = document.getElementById("meaningInput");
+
+    const expressionText = expressionInput.value.trim();
+    const meaningText = meaningInput.value.trim();
+
+    // 1. التأكد من أن الحقول ليست فارغة
+    if (!expressionText || !meaningText) {
+        alert("يرجى ملء كافة الحقول قبل الحفظ!");
+        return;
+    }
 
     if (typeof window.supabase === 'undefined') return;
     const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnec3QVTRypSu-b1Q_U1HEnR_Xz4e5e1H8_S_U-1_Xy');
 
+    // 2. تغيير شكل الزر أثناء التحميل
+    saveBtn.disabled = true;
+    saveBtn.innerText = "جاري الحفظ... ⏳";
+
     try {
-        const { error } = await client.from('speech_acts').insert([{
-            id: 'ACT-' + Date.now(), expression: exp, implicature_meaning: imp, category: 'proverbs'
-        }]);
+        // 3. إرسال البيانات للسحاب
+        const { error } = await client.from('speech_acts').insert([
+            {
+                id: 'ACT-' + Date.now(),
+                expression: expressionText,
+                implicature_meaning: meaningText, // نستخدم العمود المخصص في قاعدة بياناتك
+                category: 'proverbs' // تصنيف افتراضي
+            }
+        ]);
+
         if (error) throw error;
-        alert("تم الحفظ بنجاح!");
-        document.getElementById("expressionInput").value = "";
-        document.getElementById("meaningInput").value = "";
-        syncCloud();
+
+        alert("تم حفظ الشاهد بنجاح في السحاب! ☁️");
+
+        // 4. تفريغ الحقول بعد الحفظ الناجح
+        expressionInput.value = '';
+        meaningInput.value = '';
+        syncCloud(); // تحديث القائمة فوراً
+
     } catch (err) {
-        alert("خطأ في الحفظ: " + err.message);
+        console.error("خطأ في الحفظ:", err.message);
+        alert("حدث خطأ أثناء الحفظ: " + err.message);
+    } finally {
+        // 5. إعادة الزر لوضعه الطبيعي
+        saveBtn.disabled = false;
+        saveBtn.innerText = "حفظ في السحاب ☁️";
     }
 };
 
