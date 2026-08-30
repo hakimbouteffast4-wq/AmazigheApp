@@ -116,6 +116,7 @@ window.handleAddBtn = async function() {
     const saveBtn = document.getElementById("save-btn");
 
     const expressionInput = document.getElementById("expressionInput");
+    const categoryInput = document.getElementById("categoryInput");
     const meaningInput = document.getElementById("meaningInput");
     const literalTranslationInput = document.getElementById("literalTranslationInput");
     const speakerInfoInput = document.getElementById("speakerInfoInput");
@@ -125,9 +126,10 @@ window.handleAddBtn = async function() {
 
     const expressionText = expressionInput.value.trim();
     const meaningText = meaningInput.value.trim();
+    const categoryValue = categoryInput.value;
 
-    if (!expressionText || !meaningText) {
-        alert("يرجى ملء كافة الحقول الأساسية قبل الحفظ!");
+    if (!expressionText || !meaningText || !categoryValue) {
+        alert("يرجى ملء كافة الحقول الأساسية واختيار النوع قبل الحفظ!");
         return;
     }
 
@@ -148,7 +150,7 @@ window.handleAddBtn = async function() {
                 context: contextInput.value.trim(),
                 dialect_region: dialectRegionInput.value.trim(),
                 audio_url: audioUrlInput.value.trim(),
-                category: 'proverbs' // Default category
+                category: categoryValue
             }
         ]);
 
@@ -157,7 +159,7 @@ window.handleAddBtn = async function() {
         alert("تم الحفظ بنجاح! ☁️");
 
         // Clear fields
-        expressionInput.value = ''; meaningInput.value = ''; literalTranslationInput.value = '';
+        expressionInput.value = ''; categoryInput.value = ''; meaningInput.value = ''; literalTranslationInput.value = '';
         speakerInfoInput.value = ''; contextInput.value = ''; dialectRegionInput.value = '';
         audioUrlInput.value = '';
 
