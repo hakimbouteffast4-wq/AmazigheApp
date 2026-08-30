@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=7.1">
+    <link rel="stylesheet" href="style.css?v=7.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -17,11 +17,11 @@
             <a href="javascript:void(0)" onclick="window.switchPane('pane-lexicon'); window.toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
             <a href="javascript:void(0)" onclick="window.switchPane('about-pane'); window.toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
             <a href="javascript:void(0)" onclick="window.switchPane('contact-pane'); window.toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
-            <div style="margin-top:auto; padding:1.5rem;">
-                <button onclick="window.switchPane('admin-pane'); window.toggleSidebar()" class="admin-btn-nav" style="width:100%; padding:1rem; border-radius:12px; background:rgba(212,163,115,0.1); border:1px solid #d4a373; color:#d4a373; font-weight:900;">
-                    <i class="fas fa-user-shield"></i> لوحة المشرف
-                </button>
-            </div>
+
+            <!-- الزر الذي كان مختفياً تحت الإطار الأحمر -->
+            <a href="javascript:void(0)" onclick="window.switchPane('admin-pane'); window.toggleSidebar()" class="admin-link-fixed" style="border: 1px solid #d4a373; margin: 20px 1.5rem; border-radius: 12px; color: #d4a373 !important; background: rgba(212, 163, 115, 0.05);">
+                <i class="fas fa-user-shield"></i> لوحة المشرف
+            </a>
         </nav>
     </aside>
 
@@ -44,10 +44,10 @@
         <div id="pane-lexicon" class="pane-container active">
             <div id="category-grid" class="speech-act-grid">
                 <div class="act-category-card" onclick="window.setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
             </div>
             <div id="results-nexus"></div>
         </div>
@@ -56,15 +56,16 @@
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
         <div id="admin-pane" class="pane-container" style="display:none;">
             <div class="contact-card" style="border-top:4px solid #d4a373;">
-                <h2>إضافة متن</h2>
-                <input type="text" id="input-exp" placeholder="النص الأمازيغي" style="width:100%; margin:10px 0; padding:10px; border-radius:8px; background:#1a1a1a; color:white; border:1px solid #333;">
-                <textarea id="input-imp" placeholder="المعنى الضمني" style="width:100%; margin:10px 0; padding:10px; border-radius:8px; background:#1a1a1a; color:white; border:1px solid #333;"></textarea>
-                <button onclick="window.handleAddBtn()" style="width:100%; padding:12px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px;">حفظ في السحاب</button>
+                <h2>إدارة المتن الميداني</h2>
+                <p>يمكنك إضافة نصوص جديدة مباشرة من هنا.</p>
+                <input type="text" id="input-exp" placeholder="النص الأمازيغي" style="width:100%; margin:10px 0; padding:12px; border-radius:8px; background:#111; color:white; border:1px solid #333;">
+                <textarea id="input-imp" placeholder="المعنى الضمني" style="width:100%; margin:10px 0; padding:12px; border-radius:8px; background:#111; color:white; border:1px solid #333; min-height:80px;"></textarea>
+                <button onclick="window.handleAddBtn()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">حفظ في السحاب</button>
             </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=7.1"></script>
+    <script src="app.js?v=7.3"></script>
 </body>
 </html>
