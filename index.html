@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=7.3">
+    <link rel="stylesheet" href="style.css?v=8.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -72,8 +72,14 @@
                   id="meaningInput"
                   rows="3"
                   placeholder="أدخل المعنى أو القصد التداولي هنا..."
-                  style="width: 100%; margin-bottom: 1.5rem;"
+                  style="width: 100%; margin-bottom: 1rem;"
                 ></textarea>
+
+                <input type="text" id="literalTranslationInput" placeholder="الترجمة الحرفية..." style="width: 100%; margin-bottom: 1rem;">
+                <input type="text" id="speakerInfoInput" placeholder="معلومات المخاطب/المتحدث..." style="width: 100%; margin-bottom: 1rem;">
+                <textarea id="contextInput" rows="2" placeholder="السياق الميداني..." style="width: 100%; margin-bottom: 1rem;"></textarea>
+                <input type="text" id="dialectRegionInput" placeholder="المنطقة/الجهة اللغوية..." style="width: 100%; margin-bottom: 1rem;">
+                <input type="text" id="audioUrlInput" placeholder="رابط التسجيل الصوتي (إن وجد)..." style="width: 100%; margin-bottom: 1.5rem;">
 
                 <button onclick="window.handleAddBtn()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
                     <i class="fas fa-cloud-upload-alt"></i> حفظ في السحاب
@@ -83,6 +89,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=7.3"></script>
+    <script src="app.js?v=8.0"></script>
 </body>
 </html>
