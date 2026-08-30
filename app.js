@@ -89,8 +89,8 @@ window.toggleTheme = function() {
 
 // 3. Admin Functionality
 window.handleAddBtn = async function() {
-    const exp = document.getElementById("input-exp").value;
-    const imp = document.getElementById("input-imp").value;
+    const exp = document.getElementById("expressionInput").value;
+    const imp = document.getElementById("meaningInput").value;
     if(!exp || !imp) return alert("يرجى ملء الحقول");
 
     if (typeof window.supabase === 'undefined') return;
@@ -102,8 +102,8 @@ window.handleAddBtn = async function() {
         }]);
         if (error) throw error;
         alert("تم الحفظ بنجاح!");
-        document.getElementById("input-exp").value = "";
-        document.getElementById("input-imp").value = "";
+        document.getElementById("expressionInput").value = "";
+        document.getElementById("meaningInput").value = "";
         syncCloud();
     } catch (err) {
         alert("خطأ في الحفظ: " + err.message);

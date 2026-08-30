@@ -55,12 +55,29 @@
         <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>تحليل لساني تداولي للتراث الشفهي.</p></div></div>
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card" style="border-top:4px solid #d4a373;">
-                <h2>إدارة المتن الميداني</h2>
-                <p>يمكنك إضافة نصوص جديدة مباشرة من هنا.</p>
-                <input type="text" id="input-exp" placeholder="النص الأمازيغي" style="width:100%; margin:10px 0; padding:12px; border-radius:8px; background:#111; color:white; border:1px solid #333;">
-                <textarea id="input-imp" placeholder="المعنى الضمني" style="width:100%; margin:10px 0; padding:12px; border-radius:8px; background:#111; color:white; border:1px solid #333; min-height:80px;"></textarea>
-                <button onclick="window.handleAddBtn()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">حفظ في السحاب</button>
+            <div class="contact-card" style="border-top:4px solid #d4a373; padding: 2rem;">
+                <h2 style="margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i> إضافة متن جديد</h2>
+                <p style="margin-bottom: 1.5rem; opacity: 0.8;">أدخل البيانات الميدانية ليتم تحليلها وحفظها سحابياً.</p>
+
+                <!-- حقل الشاهد الأمازيغي -->
+                <input
+                  type="text"
+                  id="expressionInput"
+                  placeholder="أدخل الشاهد الأمازيغي هنا..."
+                  style="width: 100%; margin-bottom: 1rem;"
+                />
+
+                <!-- حقل التفسير / المعنى التداولي -->
+                <textarea
+                  id="meaningInput"
+                  rows="3"
+                  placeholder="أدخل المعنى أو القصد التداولي هنا..."
+                  style="width: 100%; margin-bottom: 1.5rem;"
+                ></textarea>
+
+                <button onclick="window.handleAddBtn()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+                    <i class="fas fa-cloud-upload-alt"></i> حفظ في السحاب
+                </button>
             </div>
         </div>
     </main>
