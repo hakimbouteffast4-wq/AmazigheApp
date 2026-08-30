@@ -69,7 +69,16 @@
         </div>
 
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card ultimate-reveal"><h2>لوحة التحكم</h2><p>إدارة البيانات السحابية.</p></div>
+            <div class="contact-card ultimate-reveal" style="border-top: 4px solid var(--gold); padding: 2rem;">
+                <h2 class="contact-title"><i class="fas fa-plus-circle"></i> إضافة متن جديد</h2>
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+                    <input type="text" id="input-expression" placeholder="النص الأمازيغي (الشاهد)..." style="width: 100%; padding: 1rem; border-radius: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white;">
+                    <textarea id="input-implicature" placeholder="الاستلزام الحواري (المعنى الضمني)..." style="width: 100%; padding: 1rem; border-radius: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; min-height: 80px;"></textarea>
+                    <button onclick="handleAddSpeechAct()" id="save-btn" style="width: 100%; padding: 1rem; border-radius: 10px; background: var(--gold); color: black; font-weight: 900; border: none; cursor: pointer;">
+                        <i class="fas fa-cloud-upload-alt"></i> حفظ في السحاب
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 

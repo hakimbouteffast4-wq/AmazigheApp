@@ -12,38 +12,62 @@ let ultimateRepository = []; // سنقوم بملء هذه المصفوفة من
 // 2. الدالة التي طلبتها: جلب البيانات من Supabase وتحديث التطبيق
 async function getSpeechActs() {
     if (!supabase) return;
-
-    console.log("جاري الاتصال بالسحاب...");
-    const { data, error } = await supabase
-        .from('speech_acts')
-        .select('*');
-
-    if (error) {
-        console.error('خطأ في جلب البيانات:', error);
-    } else {
-        console.log('الشواهد الأمازيغية المستلمة:', data);
-        // تحويل البيانات من قاعدة البيانات إلى تنسيق التطبيق
+    const { data, error } = await supabase.from('speech_acts').select('*');
+    if (!error && data) {
         ultimateRepository = data.map(item => ({
-            id: item.id,
-            expression: item.expression,
-            meaning: item.meaning,
-            translation: item.translation,
-            manuscript: item.manuscript,
-            analysis: item.analysis,
-            category: item.category,
+            id: item.id, expression: item.expression, meaning: item.meaning, category: item.category,
+            translation: item.translation, manuscript: item.manuscript, analysis: item.analysis,
             levels: { locution: item.locution, illocution: item.illocution, perlocution: item.perlocution },
             implicature: { maxim: item.implicature_maxim, meaning: item.implicature_meaning },
             taxonomy: { type: item.taxonomy_type, force: item.taxonomy_force, apparentKey: item.apparent_key, implicitKey: item.implicit_key },
             conditions: { felicity: item.felicity, politeness: item.politeness, directionOfFit: item.direction_of_fit },
             context: { setting: item.context_setting, participants: item.context_participants, prosody: item.context_prosody }
         }));
-
-        // إذا كنا في الصفحة الرئيسية، نعيد تنشيط العرض لكي تظهر البيانات الجديدة
-        if (document.getElementById("results-nexus").innerHTML === "" && document.getElementById("category-grid").style.display === "none") {
-             // إعادة تحميل التصنيف الحالي إذا كان نشطاً
-        }
     }
 }
+
+// الدالة الجديدة التي طلبتها لإضافة متن جديد
+window.addSpeechAct = async function(expressionText, implicatureText) {
+    if (!supabase) { alert("Supabase غير متصل!"); return; }
+
+    const { data, error } = await supabase
+        .from('speech_acts')
+        .insert([
+            {
+                id: 'ACT-' + Date.now(),
+                expression: expressionText,
+                implicature_meaning: implicatureText,
+                category: 'poetry'
+            }
+        ]);
+
+    if (error) {
+        console.error('خطأ في الحفظ:', error);
+        alert("فشل الحفظ: " + error.message);
+    } else {
+        console.log('تم الحفظ بنجاح!', data);
+        alert("تم الحفظ بنجاح في السحاب!");
+        getSpeechActs();
+    }
+};
+
+window.handleAddSpeechAct = async function() {
+    const exp = document.getElementById("input-expression").value;
+    const imp = document.getElementById("input-implicature").value;
+    const btn = document.getElementById("save-btn");
+
+    if (!exp || !imp) { alert("يرجى ملء الحقول أولاً"); return; }
+
+    btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i> جاري الحفظ...";
+    btn.disabled = true;
+
+    await window.addSpeechAct(exp, imp);
+
+    btn.innerHTML = "<i class='fas fa-cloud-upload-alt'></i> حفظ في السحاب";
+    btn.disabled = false;
+    document.getElementById("input-expression").value = "";
+    document.getElementById("input-implicature").value = "";
+};
 
 // 3. محرك التنقل والأزرار (مبسط ومؤمن)
 window.switchPane = function(id, btn) {
