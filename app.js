@@ -139,7 +139,7 @@ window.renderDetail = function(item) {
     window.updateNavbarVisibility();
 };
 
-// 3. Admin & Sync Logic
+// 3. Admin & Sync Logic (Optimized for v10.3)
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('speechActForm');
     if (form) {
@@ -147,43 +147,40 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = document.getElementById("save-btn");
 
-            const getVal = (id) => {
-                const el = document.getElementById(id);
-                return el ? el.value.trim() : "";
-            };
-
-            const payload = {
+            // تجميع البيانات المتوافقة كلياً مع Supabase بناءً على كودك المقترح
+            const formData = {
                 id: 'ACT-' + Date.now(),
-                expression: getVal("expression"),
-                category: getVal("category"),
-                meaning: getVal("meaning"),
-                field_investigation: getVal("field_investigation"),
-                locutionary_act: getVal("locutionary_act"),
-                illocutionary_act: getVal("illocutionary_act"),
-                perlocutionary_act: getVal("perlocutionary_act"),
-                illocution_type: getVal("illocution_type"),
-                illocutionary_force: getVal("illocutionary_force"),
-                direction_of_fit: getVal("direction_of_fit"),
-                politeness_strategy: getVal("politeness_strategy"),
-                felicity_conditions: getVal("felicity_conditions"),
-                context: getVal("field_context"), // Mapping field_context input to 'context' column
-                notes: getVal("notes")
+                expression: document.getElementById('expression').value,
+                meaning: document.getElementById('meaning').value || null,
+                category: document.getElementById('category').value,
+                field_context: document.getElementById('field_context').value || null,
+                field_investigation: document.getElementById('field_investigation').value || null,
+                locutionary_act: document.getElementById('locutionary_act').value || null,
+                illocutionary_act: document.getElementById('illocutionary_act').value || null,
+                perlocutionary_act: document.getElementById('perlocutionary_act').value || null,
+                illocution_type: document.getElementById('illocution_type').value || null,
+                illocutionary_force: document.getElementById('illocutionary_force').value || null,
+                direction_of_fit: document.getElementById('direction_of_fit').value || null,
+                politeness_strategy: document.getElementById('politeness_strategy').value || null,
+                felicity_conditions: document.getElementById('felicity_conditions').value || null,
+                notes: document.getElementById('notes').value || null
             };
 
-            if (typeof window.supabase === 'undefined') return alert("Supabase loading...");
+            if (typeof window.supabase === 'undefined') return alert("خطأ: مكتبة Supabase غير محملة.");
             const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
 
             btn.disabled = true; btn.innerText = "جاري الحفظ في السحاب... ⏳";
 
             try {
-                const { error } = await client.from('speech_acts').insert([payload]);
+                const { error } = await client.from('speech_acts').insert([formData]);
                 if (error) throw error;
-                alert("تم الحفظ بنجاح في السحاب! ☁️");
+
+                alert('تم حفظ الشاهد والتحليل التداولي بنجاح في السحاب! ☁️');
                 form.reset();
-                window.syncCloud();
+                window.syncCloud(); // تحديث المتن المحلي فوراً
             } catch (err) {
                 console.error("خطأ في الحفظ:", err.message);
-                alert("خطأ: " + err.message);
+                alert('حدث خطأ أثناء الحفظ: ' + err.message);
             } finally {
                 btn.disabled = false; btn.innerText = "☁️ حفظ في السحاب (Supabase)";
             }
