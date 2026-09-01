@@ -15,6 +15,7 @@
         <div class="sidebar-header"><h2>أفعال الكلام</h2><span>دراسة تداولية</span></div>
         <nav class="sidebar-nav">
             <a href="javascript:void(0)" onclick="window.switchPane('pane-lexicon'); window.toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="javascript:void(0)" onclick="window.switchPane('pane-history'); window.toggleSidebar()"><i class="fas fa-history"></i> آخر الإضافات</a>
             <a href="javascript:void(0)" onclick="window.switchPane('about-pane'); window.toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
             <a href="javascript:void(0)" onclick="window.switchPane('contact-pane'); window.toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
             <a href="javascript:void(0)" onclick="window.switchPane('admin-pane'); window.toggleSidebar()">
@@ -48,6 +49,15 @@
                 <div class="act-category-card" onclick="window.setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
             </div>
             <div id="results-nexus"></div>
+        </div>
+
+        <div id="pane-history" class="pane-container" style="display:none;">
+            <div class="contact-card ultimate-reveal" style="border-top: 4px solid var(--azure);">
+                <h2 class="contact-title"><i class="fas fa-history"></i> آخر الشواهد المضافة</h2>
+                <div id="speech-acts-list" class="space-y-4 mt-4">
+                    <p style="text-align:center; opacity:0.5; padding:2rem;">جاري جلب البيانات من السحاب...</p>
+                </div>
+            </div>
         </div>
 
         <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>تحليل لساني تداولي للتراث الشفهي.</p></div></div>

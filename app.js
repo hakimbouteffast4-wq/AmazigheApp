@@ -191,11 +191,53 @@ document.addEventListener('DOMContentLoaded', () => {
 window.syncCloud = async function() {
     if (typeof window.supabase === 'undefined') return;
     const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
-    const { data } = await client.from('speech_acts').select('*');
-    if (data && data.length > 0) {
-        // Merge cloud data with masterRepo if needed
-        console.log("Cloud Sync v10.1 Success.");
+    const { data, error } = await client.from('speech_acts').select('*');
+    if (!error && data && data.length > 0) {
+        window.masterRepo = data;
+        console.log("Cloud Sync v10.5 Success. Items:", data.length);
+        window.loadSpeechActs(); // تحديث قائمة التاريخ فور جلب البيانات
     }
+};
+
+// دالة لجلب كل أفعال الكلام المضافة وإظهارها في الصفحة (بناءً على طلبك)
+window.loadSpeechActs = async function() {
+    if (typeof window.supabase === 'undefined') return;
+    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
+
+    const { data, error } = await client
+        .from('speech_acts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('خطأ في جلب البيانات:', error);
+        return;
+    }
+
+    const container = document.getElementById('speech-acts-list');
+    if (!container) return;
+
+    container.innerHTML = ''; // مسح القائمة القديمة
+
+    if (data.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:2rem; opacity:0.5;">لا يوجد شواهد مضافة حالياً.</p>';
+        return;
+    }
+
+    data.forEach(act => {
+        const itemDiv = document.createElement('div');
+        itemDiv.style.cssText = "padding:1rem; border-bottom:1px solid rgba(255,255,255,0.1); border-radius:10px; margin-bottom:0.8rem; background:rgba(0,0,0,0.2); transition:0.3s; cursor:pointer;";
+        itemDiv.className = "hover:bg-gray-800 transition";
+        itemDiv.innerHTML = `
+            <h4 style="font-weight:bold; font-size:1.1rem; color:var(--gold);" dir="rtl">${act.expression}</h4>
+            <p style="font-size:0.9rem; color:#ccc; mt-1" dir="rtl">${act.meaning || 'لا يوجد شرح'}</p>
+            <span style="display:inline-block; mt-2 text-xs bg-amber-900/50 text-amber-300 px-2 py-1 rounded">
+                ${act.category}
+            </span>
+        `;
+        itemDiv.onclick = () => window.renderDetail(act);
+        container.appendChild(itemDiv);
+    });
 };
 
 
@@ -230,4 +272,5 @@ window.toggleTheme = function() {
 document.addEventListener("DOMContentLoaded", () => {
     window.switchPane('pane-lexicon');
     window.syncCloud();
+    window.loadSpeechActs();
 });
