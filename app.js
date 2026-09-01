@@ -1,8 +1,25 @@
 ﻿/**
- * AMAWAL UNIVERSAL ENGINE v12.3 - Exact Schema Sync
+ * AMAWAL UNIVERSAL ENGINE v12.4 - Forced Corpus Restoration
  */
 
-var masterRepo = [];
+var masterRepo = [
+    {
+      id: "PROV-BLESS-001",
+      expression: "ⴰⵔ ⵜⵜⵉⵏⵉⵏ : \"ⴰⴷ ⵢⴰⵊⵊ ⵕⴱⴱِي ⵜⵉⴼⵉⵡⵜ ⴳ ⵓⵖⴰⵔⴰⵙ\" (Ad yajj Ṛbbi tifiwt g uɣaras)",
+      category: "proverbs",
+      meaning: "دعاء بالخير والتوفيق واليسر في الخطوات.",
+      field_context: "يُقال عند توديع المسافر، أو شروع شخص في مشروع جديد.",
+      field_investigation: "حقل أيت يوسي (الأطلس المتوسط)، تجميع من راوية محلي.",
+      locutionary_act: "جملة فعلية دعائية صريحة بإنارة الطريق.",
+      illocutionary_act: "التوسل والرجاء والدعاء بالبركة.",
+      perlocutionary_act: "إشاعة الطمأنينة والأمان وتوطيد التضامن.",
+      illocution_type: "Expressive (تعبيري)",
+      illocutionary_force: "الدعاء والخيرية والتمنّي الصادق.",
+      direction_of_fit: "World-to-words",
+      politeness_strategy: "أدب إيجابي مباشر يُظهر الاهتمام.",
+      felicity_conditions: "شرط التمهيد: سفر. شرط الإخلاص: نية طيبة. الشرط الأساس: الإيمان بالرعاية الإلهية."
+    }
+];
 var currentCategory = null;
 
 var supabaseUrl = 'https://savnjahwekgfnvcpofqe.supabase.co';
