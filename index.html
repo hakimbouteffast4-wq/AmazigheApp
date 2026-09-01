@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=11.0">
+    <link rel="stylesheet" href="style.css?v=12.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -14,27 +14,25 @@
     <aside id="sidebar" class="sidebar">
         <div class="sidebar-header"><h2>أفعال الكلام</h2><span>دراسة تداولية</span></div>
         <nav class="sidebar-nav">
-            <a href="javascript:void(0)" onclick="window.switchPane('pane-lexicon'); window.toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
-            <a href="javascript:void(0)" onclick="window.switchPane('pane-history'); window.toggleSidebar()"><i class="fas fa-history"></i> آخر الإضافات</a>
-            <a href="javascript:void(0)" onclick="window.switchPane('about-pane'); window.toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
-            <a href="javascript:void(0)" onclick="window.switchPane('contact-pane'); window.toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
-            <a href="javascript:void(0)" onclick="window.switchPane('admin-pane'); window.toggleSidebar()">
-                <i class="fas fa-user-shield"></i> لوحة المشرف
-            </a>
+            <a href="javascript:void(0)" onclick="switchPane('pane-lexicon'); toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="javascript:void(0)" onclick="switchPane('pane-history'); toggleSidebar()"><i class="fas fa-history"></i> آخر الإضافات</a>
+            <a href="javascript:void(0)" onclick="switchPane('about-pane'); toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
+            <a href="javascript:void(0)" onclick="switchPane('contact-pane'); toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
+            <a href="javascript:void(0)" onclick="switchPane('admin-pane'); toggleSidebar()"><i class="fas fa-user-shield"></i> لوحة المشرف</a>
         </nav>
     </aside>
 
-    <div id="overlay" class="overlay" onclick="window.toggleSidebar()"></div>
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
     <header class="navbar">
         <div class="nav-container">
             <div style="display:flex; gap:10px; align-items:center; width:80px;">
-                <button id="back-btn" class="trigger-btn" onclick="window.navigateBack()" style="display:none;"><i class="fas fa-arrow-right"></i></button>
-                <button id="menu-btn" class="trigger-btn" onclick="window.toggleSidebar()"><i class="fas fa-bars"></i></button>
+                <button id="back-btn" class="trigger-btn" onclick="navigateBack()" style="display:none;"><i class="fas fa-arrow-right"></i></button>
+                <button id="menu-btn" class="trigger-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
             </div>
             <div class="brand-pinnacle" onclick="location.reload()"><h1>أفعال الكلام</h1><span>أيت يوسي</span></div>
             <div style="width:80px; display:flex; justify-content:flex-end;">
-                <button class="trigger-btn" onclick="window.toggleTheme()"><i class="fas fa-moon"></i></button>
+                <button class="trigger-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
             </div>
         </div>
     </header>
@@ -42,49 +40,42 @@
     <main class="main-master-wrapper" style="padding:1.5rem; position:relative; z-index:1;">
         <div id="pane-lexicon" class="pane-container active">
             <div id="category-grid" class="speech-act-grid">
-                <div class="act-category-card" onclick="window.setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
-                <div class="act-category-card" onclick="window.setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
             </div>
             <div id="results-nexus"></div>
         </div>
 
         <div id="pane-history" class="pane-container" style="display:none;">
-            <div class="contact-card ultimate-reveal" style="border-top: 4px solid var(--azure);">
-                <h2 class="contact-title"><i class="fas fa-history"></i> آخر الشواهد المضافة</h2>
-                <div id="speech-acts-list" class="space-y-4 mt-4">
-                    <p style="text-align:center; opacity:0.5; padding:2rem;">جاري جلب البيانات من السحاب...</p>
-                </div>
+            <div class="contact-card" style="border-top: 4px solid #a2d2ff;">
+                <h2 style="margin-bottom:1rem;"><i class="fas fa-history"></i> آخر الإضافات</h2>
+                <div id="speech-acts-list">جاري التحميل...</div>
             </div>
         </div>
 
         <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>تحليل لساني تداولي للتراث الشفهي.</p></div></div>
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
-
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card ultimate-reveal" style="border-top:4px solid #d4a373; padding: 1.5rem;">
-                <h2 style="margin-bottom: 1.5rem; text-align: center;">إضافة متن ميداني</h2>
-                <form id="speechActForm" dir="rtl">
-                  <input type="text" id="expression" required placeholder="الشاهد الأمازيغي..." style="width:100%; margin-bottom:10px;">
-                  <select id="category" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px;">
+            <div class="contact-card" style="border-top:4px solid #d4a373;">
+                <h2>إضافة متن جديد</h2>
+                <input type="text" id="expression" placeholder="الشاهد الأمازيغي..." style="width:100%; margin:10px 0; padding:12px;">
+                <select id="categorySelect" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px;">
                     <option value="proverbs">أمثال شعبية</option>
                     <option value="izlan">إيزلان</option>
                     <option value="tales">حكايات شعبية</option>
                     <option value="riddles">الألغاز</option>
                     <option value="idioms">تعابير مسكوكة</option>
-                  </select>
-                  <textarea id="meaning" rows="2" placeholder="المعنى أو القصد التداولي..." style="width:100%; margin-bottom:15px;"></textarea>
-                  <button type="submit" id="save-btn" style="width:100%; padding:15px; background:#c08457; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
-                    ☁️ حفظ في السحاب
-                  </button>
-                </form>
+                </select>
+                <textarea id="meaning" placeholder="المعنى..." style="width:100%; margin-bottom:10px; padding:12px;"></textarea>
+                <button onclick="handleSave()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px;">حفظ في السحاب</button>
             </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=11.0"></script>
+    <script src="app.js?v=12.0"></script>
 </body>
 </html>
