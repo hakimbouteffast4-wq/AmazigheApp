@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=9.0">
+    <link rel="stylesheet" href="style.css?v=10.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        .admin-section-title { color: #d4a373; font-weight: bold; margin: 1.5rem 0 0.8rem; border-bottom: 1px solid rgba(212,163,115,0.3); padding-bottom: 5px; font-size: 0.9rem; }
-    </style>
 </head>
 <body class="entrance-anim">
     <div class="orb orb-1"></div>
@@ -45,10 +42,10 @@
         <div id="pane-lexicon" class="pane-container active">
             <div id="category-grid" class="speech-act-grid">
                 <div class="act-category-card" onclick="window.setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
-                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
-                <div class="act-category-card" onclick="setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
-                <div class="act-category-card" onclick="setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
-                <div class="act-category-card" onclick="setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
+                <div class="act-category-card" onclick="window.setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
+                <div class="act-category-card" onclick="window.setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
+                <div class="act-category-card" onclick="window.setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
+                <div class="act-category-card" onclick="window.setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
             </div>
             <div id="results-nexus"></div>
         </div>
@@ -56,73 +53,26 @@
         <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>تحليل لساني تداولي للتراث الشفهي.</p></div></div>
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
 
-        <!-- لوحة المشرف المطورة v9.0 -->
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card" style="border-top:4px solid #d4a373; padding: 2rem;">
-                <h2 style="margin-bottom: 1rem;"><i class="fas fa-plus-circle"></i> إضافة متن ميداني جديد</h2>
-
-                <div class="admin-section-title">1. بيانات المتن (المخطوط)</div>
+            <div class="contact-card" style="border-top:4px solid #d4a373; padding: 1.5rem;">
+                <h2 style="margin-bottom: 1rem;">إضافة متن جديد</h2>
                 <input type="text" id="expressionInput" placeholder="الشاهد الأمازيغي (Expression)...">
-                <select id="categoryInput" style="width:100%; margin-bottom:1rem; padding:12px; border-radius:8px;">
-                    <option value="" disabled selected>اختر نوع الشاهد...</option>
+                <select id="categoryInput" style="width:100%; margin-bottom:1rem; padding:12px; border-radius:8px; background: white; color: black; font-weight: bold;">
                     <option value="proverbs">أمثال شعبية</option>
                     <option value="izlan">إيزلان</option>
                     <option value="tales">الحكايات</option>
                     <option value="riddles">الألغاز</option>
                     <option value="idioms">تعابير مسكوكة</option>
                 </select>
-                <textarea id="meaningInput" rows="2" placeholder="الدلالة المعجمية (Meaning)..."></textarea>
-                <input type="text" id="literalTranslationInput" placeholder="الترجمة الحرفية (Literal Translation)...">
-                <textarea id="fieldInvestigationInput" rows="2" placeholder="الاستقصاء الميداني (Field Investigation)..."></textarea>
-
-<<<<<<< HEAD
-                <div class="admin-section-title">2. مستويات التلفظ (Speech Act Levels)</div>
-                <input type="text" id="locutionaryInput" placeholder="الفعل اللفظي (Locutionary Act)...">
-                <input type="text" id="illocutionaryInput" placeholder="الفعل الإنجازي (Illocutionary Act)...">
-                <input type="text" id="perlocutionaryInput" placeholder="الفعل التأثيري (Perlocutionary Act)...">
-=======
-                <!-- اختيار نوع الشاهد -->
-                <select id="categoryInput" style="width: 100%; margin-bottom: 1rem; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db; background: white; font-weight: bold;">
-                    <option value="" disabled selected>اختر نوع الشاهد...</option>
-                    <option value="proverbs">أمثال شعبية</option>
-                    <option value="izlan">إيزلان</option>
-                    <option value="tales">الحكايات</option>
-                    <option value="riddles">الألغاز</option>
-                    <option value="idioms">تعابير مسكوكة</option>
-                </select>
-
-                <!-- حقل التفسير / المعنى التداولي -->
-                <textarea
-                  id="meaningInput"
-                  rows="3"
-                  placeholder="أدخل المعنى أو القصد التداولي هنا..."
-                  style="width: 100%; margin-bottom: 1rem;"
-                ></textarea>
->>>>>>> origin/main
-
-                <div class="admin-section-title">3. المقاصد والشروط (Taxonomy & Conditions)</div>
-                <input type="text" id="illocutionTypeInput" placeholder="نوع الفعل (Assertive, Directive, etc)...">
-                <input type="text" id="illocutionForceInput" placeholder="القوة الإنجازية (Force)...">
-                <input type="text" id="implicatureMaximInput" placeholder="قانون غرايس المخروق (Maxim)...">
-                <textarea id="implicatureMeaningInput" rows="2" placeholder="المعنى المستلزم (Conversational Implicature)..."></textarea>
-                <input type="text" id="felicityInput" placeholder="شروط النجاح (Felicity Conditions)...">
-                <input type="text" id="politenessInput" placeholder="استراتيجية التأدب (Politeness Strategy)...">
-                <input type="text" id="fitInput" placeholder="اتجاه المطابقة (Direction of Fit)...">
-
-                <div class="admin-section-title">4. السياق الميداني (Ethnopragmatic Context)</div>
-                <input type="text" id="speakerInfoInput" placeholder="معلومات المتحدث/المخاطب...">
-                <textarea id="contextInput" rows="2" placeholder="المقام والسياق الثقافي..."></textarea>
-                <input type="text" id="dialectRegionInput" placeholder="المنطقة/الجهة اللغوية...">
-                <input type="text" id="audioUrlInput" placeholder="رابط التسجيل الصوتي...">
-
-                <button onclick="window.handleProfessionalAdd()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer; margin-top: 2rem;">
-                    <i class="fas fa-cloud-upload-alt"></i> حفظ التحليل في السحاب
+                <textarea id="meaningInput" rows="2" placeholder="المعنى التداولي (Meaning)..."></textarea>
+                <button onclick="window.handleSaveBtn()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+                    <i class="fas fa-cloud-upload-alt"></i> حفظ في السحاب
                 </button>
             </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=9.0"></script>
+    <script src="app.js?v=10.0"></script>
 </body>
 </html>
