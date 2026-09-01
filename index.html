@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=12.0">
+    <link rel="stylesheet" href="style.css?v=12.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .form-section { margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+        .form-section h3 { color: #d4a373; font-size: 1rem; margin-bottom: 1rem; }
+        .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
+        label { display: block; font-size: 0.8rem; margin-bottom: 4px; opacity: 0.8; }
+    </style>
 </head>
 <body class="entrance-anim">
     <div class="orb orb-1"></div>
@@ -17,7 +23,6 @@
             <a href="javascript:void(0)" onclick="switchPane('pane-lexicon'); toggleSidebar()"><i class="fas fa-home"></i> الرئيسية</a>
             <a href="javascript:void(0)" onclick="switchPane('pane-history'); toggleSidebar()"><i class="fas fa-history"></i> آخر الإضافات</a>
             <a href="javascript:void(0)" onclick="switchPane('about-pane'); toggleSidebar()"><i class="fas fa-info-circle"></i> حول الدراسة</a>
-            <a href="javascript:void(0)" onclick="switchPane('contact-pane'); toggleSidebar()"><i class="fas fa-envelope"></i> اتصل بنا</a>
             <a href="javascript:void(0)" onclick="switchPane('admin-pane'); toggleSidebar()"><i class="fas fa-user-shield"></i> لوحة المشرف</a>
         </nav>
     </aside>
@@ -31,18 +36,16 @@
                 <button id="menu-btn" class="trigger-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
             </div>
             <div class="brand-pinnacle" onclick="location.reload()"><h1>أفعال الكلام</h1><span>أيت يوسي</span></div>
-            <div style="width:80px; display:flex; justify-content:flex-end;">
-                <button class="trigger-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-            </div>
+            <div style="width:80px; display:flex; justify-content:flex-end;"><button class="trigger-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button></div>
         </div>
     </header>
 
     <main class="main-master-wrapper" style="padding:1.5rem; position:relative; z-index:1;">
         <div id="pane-lexicon" class="pane-container active">
             <div id="category-grid" class="speech-act-grid">
-                <div class="act-category-card" onclick="setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
-                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
                 <div class="act-category-card" onclick="setSearchCategory('proverbs')"><i class="fas fa-comments"></i><h3>أمثال شعبية</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('izlan')"><i class="fas fa-music"></i><h3>إيزلان</h3></div>
+                <div class="act-category-card" onclick="setSearchCategory('tales')"><i class="fas fa-book-open"></i><h3>الحكايات</h3></div>
                 <div class="act-category-card" onclick="setSearchCategory('riddles')"><i class="fas fa-puzzle-piece"></i><h3>الألغاز</h3></div>
                 <div class="act-category-card" onclick="setSearchCategory('idioms')"><i class="fas fa-quote-right"></i><h3>تعابير مسكوكة</h3></div>
             </div>
@@ -50,32 +53,72 @@
         </div>
 
         <div id="pane-history" class="pane-container" style="display:none;">
-            <div class="contact-card" style="border-top: 4px solid #a2d2ff;">
-                <h2 style="margin-bottom:1rem;"><i class="fas fa-history"></i> آخر الإضافات</h2>
+            <div class="contact-card" style="border-top: 4px solid #a2d2ff; padding: 1.5rem;">
+                <h2 style="margin-bottom: 1rem;"><i class="fas fa-history"></i> السجل السحابي</h2>
                 <div id="speech-acts-list">جاري التحميل...</div>
             </div>
         </div>
 
-        <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>تحليل لساني تداولي للتراث الشفهي.</p></div></div>
+        <div id="about-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>حول الدراسة</h2><p>أرشفة وتحليل تداولي للمتن الشفهي الأمازيغي.</p></div></div>
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
+
+        <!-- لوحة المشرف المخصصة v12.3 -->
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card" style="border-top:4px solid #d4a373;">
-                <h2>إضافة متن جديد</h2>
-                <input type="text" id="expression" placeholder="الشاهد الأمازيغي..." style="width:100%; margin:10px 0; padding:12px;">
-                <select id="categorySelect" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px;">
-                    <option value="proverbs">أمثال شعبية</option>
-                    <option value="izlan">إيزلان</option>
-                    <option value="tales">حكايات شعبية</option>
-                    <option value="riddles">الألغاز</option>
-                    <option value="idioms">تعابير مسكوكة</option>
-                </select>
-                <textarea id="meaning" placeholder="المعنى..." style="width:100%; margin-bottom:10px; padding:12px;"></textarea>
-                <button onclick="handleSave()" id="save-btn" style="width:100%; padding:15px; background:#d4a373; color:black; font-weight:bold; border:none; border-radius:8px;">حفظ في السحاب</button>
+            <div class="contact-card" style="border-top:4px solid #d4a373; padding: 2rem;">
+                <h2 style="margin-bottom: 1.5rem; text-align: center;">إضافة متن جديد للسحاب</h2>
+                <form id="speechActForm" dir="rtl">
+
+                    <div class="form-section">
+                        <h3>1. المعلومات الأساسية</h3>
+                        <div class="admin-grid">
+                            <div><label>الشاهد الأمازيغي (expression) *</label><input type="text" id="expression" required></div>
+                            <div><label>التصنيف (category)</label>
+                                <select id="category"><option value="proverbs">أمثال شعبية</option><option value="izlan">إيزلان</option><option value="tales">الحكايات</option><option value="riddles">الألغاز</option><option value="idioms">تعابير مسكوكة</option></select>
+                            </div>
+                            <div style="grid-column: 1/-1;"><label>المعنى (meaning)</label><textarea id="meaning" rows="2"></textarea></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>2. مستويات التلفظ (Levels)</h3>
+                        <div class="admin-grid">
+                            <div><label>لفظي (locutionary_act)</label><input type="text" id="locutionary_act"></div>
+                            <div><label>إنجازي (illocutionary_act)</label><input type="text" id="illocutionary_act"></div>
+                            <div><label>تأثيري (perlocutionary_act)</label><input type="text" id="perlocutionary_act"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>3. التحليل التداولي (Pragmatics)</h3>
+                        <div class="admin-grid">
+                            <div><label>نوع الفعل (illocution_type)</label><input type="text" id="illocution_type"></div>
+                            <div><label>القوة (illocutionary_force)</label><input type="text" id="illocutionary_force"></div>
+                            <div><label>اتجاه المطابقة (direction_of_fit)</label><input type="text" id="direction_of_fit"></div>
+                            <div><label>استراتيجية اللياقة (politeness_strategy)</label><input type="text" id="politeness_strategy"></div>
+                            <div><label>قانون غرايس (grice_maxim)</label><input type="text" id="grice_maxim"></div>
+                            <div><label>المعنى المستلزم (implicature)</label><input type="text" id="implicature"></div>
+                            <div style="grid-column: 1/-1;"><label>شروط النجاح (felicity_conditions)</label><textarea id="felicity_conditions" rows="2"></textarea></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>4. السياق والميدان (Field)</h3>
+                        <div class="admin-grid">
+                            <div><label>سياق القول (field_context)</label><input type="text" id="field_context"></div>
+                            <div><label>معلومات التحقيق (field_investigation)</label><input type="text" id="field_investigation"></div>
+                            <div><label>ملاحظات (notes)</label><input type="text" id="notes"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="save-btn" style="width:100%; padding:15px; background:#c08457; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+                        ☁️ حفظ التحليل في السحاب
+                    </button>
+                </form>
             </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=12.0"></script>
+    <script src="app.js?v=12.3"></script>
 </body>
 </html>
