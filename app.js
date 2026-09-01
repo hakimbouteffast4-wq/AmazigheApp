@@ -139,30 +139,57 @@ window.renderDetail = function(item) {
     window.updateNavbarVisibility();
 };
 
-// 3. Admin & Sync
-window.handleSaveBtn = async function() {
-    const btn = document.getElementById("save-btn");
-    const exp = document.getElementById("expressionInput").value.trim();
-    const imp = document.getElementById("meaningInput").value.trim();
-    const cat = document.getElementById("categoryInput").value;
+// 3. Admin & Sync Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('speechActForm');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById("save-btn");
 
-    if(!exp || !imp) return alert("يرجى ملء الحقول الأساسية");
+            const getVal = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : "";
+            };
 
-    if (typeof window.supabase === 'undefined') return alert("Supabase loading...");
-    const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
+            const payload = {
+                id: 'ACT-' + Date.now(),
+                expression: getVal("expression"),
+                category: getVal("category"),
+                meaning: getVal("meaning"),
+                field_investigation: getVal("field_investigation"),
+                locutionary_act: getVal("locutionary_act"),
+                illocutionary_act: getVal("illocutionary_act"),
+                perlocutionary_act: getVal("perlocutionary_act"),
+                illocution_type: getVal("illocution_type"),
+                illocutionary_force: getVal("illocutionary_force"),
+                direction_of_fit: getVal("direction_of_fit"),
+                politeness_strategy: getVal("politeness_strategy"),
+                felicity_conditions: getVal("felicity_conditions"),
+                context: getVal("field_context"), // Mapping field_context input to 'context' column
+                notes: getVal("notes")
+            };
 
-    btn.disabled = true; btn.innerText = "جاري الحفظ...";
+            if (typeof window.supabase === 'undefined') return alert("Supabase loading...");
+            const client = window.supabase.createClient('https://savnjahwekgfnvcpofqe.supabase.co', 'sb_publishable_BGHkAqnecJQVTRyp5u-biQ_UlHEn00b');
 
-    try {
-        const { error } = await client.from('speech_acts').insert([{
-            id: 'ACT-' + Date.now(), expression: exp, implicature_meaning: imp, category: cat
-        }]);
-        if (error) throw error;
-        alert("تم الحفظ بنجاح!");
-        location.reload();
-    } catch (err) { alert("خطأ: " + err.message); }
-    finally { btn.disabled = false; btn.innerText = "حفظ في السحاب"; }
-};
+            btn.disabled = true; btn.innerText = "جاري الحفظ في السحاب... ⏳";
+
+            try {
+                const { error } = await client.from('speech_acts').insert([payload]);
+                if (error) throw error;
+                alert("تم الحفظ بنجاح في السحاب! ☁️");
+                form.reset();
+                window.syncCloud();
+            } catch (err) {
+                console.error("خطأ في الحفظ:", err.message);
+                alert("خطأ: " + err.message);
+            } finally {
+                btn.disabled = false; btn.innerText = "☁️ حفظ في السحاب (Supabase)";
+            }
+        });
+    }
+});
 
 window.syncCloud = async function() {
     if (typeof window.supabase === 'undefined') return;
@@ -173,6 +200,7 @@ window.syncCloud = async function() {
         console.log("Cloud Sync v10.1 Success.");
     }
 };
+
 
 // 4. Global Helpers
 window.updateNavbarVisibility = function() {
