@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>أفعال الكلام | أيت يوسي</title>
-    <link rel="stylesheet" href="style.css?v=10.8">
+    <link rel="stylesheet" href="style.css?v=11.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -64,107 +64,20 @@
         <div id="contact-pane" class="pane-container" style="display:none;"><div class="contact-card"><h2>اتصل بنا</h2><p>hakimed.b@gmail.com</p></div></div>
 
         <div id="admin-pane" class="pane-container" style="display:none;">
-            <div class="contact-card ultimate-reveal" style="border-top:4px solid #d4a373; padding: 1.5rem; max-width: 900px; margin: 0 auto;">
-                <h2 style="margin-bottom: 1.5rem; text-align: center;">إضافة متن جديد للسحاب</h2>
-
-                <form id="speechActForm" class="space-y-4 text-right" dir="rtl">
-                  <!-- 1. البيانات الأساسية للشاهد -->
-                  <div style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
-                    <h3 style="font-weight: bold; margin-bottom: 1rem; color: var(--gold);">البيانات الأساسية للشاهد</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">الشاهد الأمازيغي (expression) *</label>
-                        <input type="text" id="expression" required placeholder="أدخل التعبير الأمازيغي...">
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">التصنيف (category)</label>
-                        <select id="category" style="width: 100%; padding: 12px; border-radius: 8px; background: white; color: black; font-weight: bold;">
-                          <option value="proverbs">أمثال شعبية</option>
-                          <option value="idioms">تعبير مسكوك</option>
-                          <option value="riddles">ألغاز (إيرلان)</option>
-                          <option value="tales">حكايات شعبية</option>
-                          <option value="izlan">إيزلان</option>
-                        </select>
-                      </div>
-                      <div style="grid-column: 1 / -1;">
-                        <label style="display: block; margin-bottom: 0.3rem;">المعنى/التفسير (meaning)</label>
-                        <textarea id="meaning" rows="2" placeholder="الشرح والمعنى التداولي..."></textarea>
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">سياق البحث الميداني (field_context)</label>
-                        <input type="text" id="field_context" placeholder="مكان/ظروف القول...">
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">ملاحظات التحقيق الميداني (field_investigation)</label>
-                        <input type="text" id="field_investigation" placeholder="معلومات المستجوب/المنطقة...">
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- 2. مستويات التلفظ والخطاب -->
-                  <div style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
-                    <h3 style="font-weight: bold; margin-bottom: 1rem; color: var(--gold);">مستويات التلفظ والخطاب</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">الفعل اللفظي (locutionary_act)</label>
-                        <input type="text" id="locutionary_act">
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">الفعل الإنجازي (illocutionary_act)</label>
-                        <input type="text" id="illocutionary_act">
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">الفعل التأثيري (perlocutionary_act)</label>
-                        <input type="text" id="perlocutionary_act">
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- 3. المقاصد والشروط التداولية -->
-                  <div style="border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-weight: bold; margin-bottom: 1rem; color: var(--gold);">التحليل التداولي والمقاصد</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">نوع الفعل الإنجازي (illocution_type)</label>
-                        <select id="illocution_type" style="width: 100%; padding: 12px; border-radius: 8px; background: white; color: black; font-weight: bold;">
-                          <option value="">-- اختر النوع --</option>
-                          <option value="Assertive">إخباري / تقريري (Assertive)</option>
-                          <option value="Directive">توجيهي / أمري (Directive)</option>
-                          <option value="Commissive">التزامي / وعد (Commissive)</option>
-                          <option value="Expressive">تعبيري / وجداني (Expressive)</option>
-                          <option value="Declaration">إعلاني / إشهادي (Declaration)</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">القوة الإنجازية (illocutionary_force)</label>
-                        <input type="text" id="illocutionary_force">
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">اتجاه التطابق (direction_of_fit)</label>
-                        <select id="direction_of_fit" style="width: 100%; padding: 12px; border-radius: 8px; background: white; color: black; font-weight: bold;">
-                          <option value="">-- اختر الاتجاه --</option>
-                          <option value="Words-to-world">من الكلمات إلى العالم (Words-to-world)</option>
-                          <option value="World-to-words">من العالم إلى الكلمات (World-to-words)</option>
-                          <option value="Double direction">اتجاه مزدوج (Double direction)</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label style="display: block; margin-bottom: 0.3rem;">استراتيجية اللياقة (politeness_strategy)</label>
-                        <input type="text" id="politeness_strategy">
-                      </div>
-                      <div style="grid-column: 1 / -1;">
-                        <label style="display: block; margin-bottom: 0.3rem;">الشروط التداولية / الملاءمة (felicity_conditions)</label>
-                        <textarea id="felicity_conditions" rows="2"></textarea>
-                      </div>
-                      <div style="grid-column: 1 / -1;">
-                        <label style="display: block; margin-bottom: 0.3rem;">ملاحظات عامة (notes)</label>
-                        <input type="text" id="notes">
-                      </div>
-                    </div>
-                  </div>
-
-                  <button type="submit" id="save-btn" style="width: 100%; padding: 1rem; border-radius: 12px; background: #c08457; color: white; font-weight: 900; border: none; cursor: pointer; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(192, 132, 87, 0.3);">
-                    ☁️ حفظ في السحاب (Supabase)
+            <div class="contact-card ultimate-reveal" style="border-top:4px solid #d4a373; padding: 1.5rem;">
+                <h2 style="margin-bottom: 1.5rem; text-align: center;">إضافة متن ميداني</h2>
+                <form id="speechActForm" dir="rtl">
+                  <input type="text" id="expression" required placeholder="الشاهد الأمازيغي..." style="width:100%; margin-bottom:10px;">
+                  <select id="category" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px;">
+                    <option value="proverbs">أمثال شعبية</option>
+                    <option value="izlan">إيزلان</option>
+                    <option value="tales">حكايات شعبية</option>
+                    <option value="riddles">الألغاز</option>
+                    <option value="idioms">تعابير مسكوكة</option>
+                  </select>
+                  <textarea id="meaning" rows="2" placeholder="المعنى أو القصد التداولي..." style="width:100%; margin-bottom:15px;"></textarea>
+                  <button type="submit" id="save-btn" style="width:100%; padding:15px; background:#c08457; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
+                    ☁️ حفظ في السحاب
                   </button>
                 </form>
             </div>
@@ -172,6 +85,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=10.8"></script>
+    <script src="app.js?v=11.0"></script>
 </body>
 </html>
